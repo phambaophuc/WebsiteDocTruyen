@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+<div class="d-inline-block d-flex align-items-center justify-content-xxl-between">
+    <h2 class="d-inline-block">TRUYỆN</h2>
+    <select onchange="if (this.value) window.location.href=this.value">
+        <option value="">Chọn thể loại</option>
+        @foreach (var genre in ViewBag.GenreID)
+        {
+            <option value="@Url.Action("Index", "Home", new { genreId = genre.Value})">@genre.Text</option>
+        }
+    </select>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Mới cập nhật</h2>
+            <div class="row">
+                @foreach (var story in Model)
+                {
+                    <div class="col-md-2 mb-5">
+                        <div class="card-group h-100">
+                            <img src="@story.Img" class="card-img-top" alt="@story.Title">
+                            <div class="card-body text-center text-truncate">
+                                <a class="card-title text-decoration-none" href="@Url.Action("Details", "Home", new { id = story.StoryID })" style="font-size:16px">@story.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

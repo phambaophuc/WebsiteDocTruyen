@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebsiteDocTruyen.Models.Story>
+@{
+    ViewBag.Title = "Search";
+    Layout = "/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model.Any())
+            {
+                <div class="row">
+                    @foreach (var story in Model)
+                    {
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="@story.Img" class="card-img-top" alt="@story.Title">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 16px">@story.Title</h5>
+                            </div>
+                            <div class="card-footer">
+                                @Html.ActionLink("Thông tin", "Details", "Stories", new { id = story.StoryID }, new { @class = "btn btn-info" })
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="text-center">
+                    <p>No stories found.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

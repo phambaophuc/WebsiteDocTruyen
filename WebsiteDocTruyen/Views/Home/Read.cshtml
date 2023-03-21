@@ -1,0 +1,23 @@
+﻿@model WebsiteDocTruyen.ViewModels.ReadViewModel
+@{
+    ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-uppercase">@Model.StoryTitle</h2>
+<h5 class="text-center">@Model.Title</h5>
+
+@Html.Raw(new MarkdownSharp.Markdown().Transform(Model.Content))
+
+<div class="text-center">
+    @if (Model.PreviousChapterID != 0)
+    {
+        <a class="btn btn-outline-success" href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = Model.PreviousChapterID })">Chương trước</a>
+    }
+    <a class="btn btn-outline-primary" href="@Url.Action("Details", "Home", new { id = Model.StoryID })"><i class="fas fa-contact-book"></i></a>
+    @if (Model.NextChapterID != 0)
+    {
+        <a class="btn btn-outline-success" href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = Model.NextChapterID })">Chương tiếp</a>
+    }
+</div>
+

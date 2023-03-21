@@ -1,0 +1,11 @@
+﻿@model WebsiteDocTruyen.Models.Story
+
+<h2>Chương</h2>
+
+<ul>
+    @foreach (var chapter in Model.Chapters)
+    {
+        <li><a class="link-secondary text-decoration-none" href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">@chapter.Title</a></li>
+    }
+</ul>
+

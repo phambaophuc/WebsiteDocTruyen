@@ -1,0 +1,29 @@
+﻿@model WebsiteDocTruyen.Models.Story
+@{
+    ViewBag.Title = "Details";
+    Layout = "/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+<h2>THÔNG TIN</h2>
+<hr class="col-2" />
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            @Html.ActionLink("Sửa truyện", "Edit", "Stories", new { id = Model.StoryID }, new { @class = "btn btn-primary" })
+            <span onclick="return confirm('Bạn có muốn xoá truyện này?')">
+                <a href="@Url.Action("Delete", "Stories", new { id = Model.StoryID })" class="btn btn-danger">Xoá truyện</a>
+            </span>
+            <img class="rounded-end" src="@Model.Img" alt="Alternate Text" style="display:block; margin:8px 0" />
+            <p>Tác giả: <span class="text-nowrap">@Model.Author</span></p>
+            <p>Thể loại: <span>@String.Join(", ", Model.Genres.Select(g => g.Name))</span></p>
+        </div>
+        <div class="col-7">
+            <h3 class="text-center text-uppercase">@Model.Title</h3>
+            <hr />
+            @Html.Raw(new MarkdownSharp.Markdown().Transform(Model.Description))
+        </div>
+    </div>
+</div>
+<hr class="col-1" />
+@Html.ActionLink("Thêm chương", "Create", "Chapters", new { id = Model.StoryID }, new { @class = "btn btn-success" })
+<h5 style="color:forestgreen; margin-top: 5px">Số chương hiện tại: @ViewBag.ChapterCount</h5>

@@ -1,0 +1,5 @@
+﻿@{
+    Layout = Request.IsAuthenticated && User.IsInRole("Admin")
+        ? "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml"
+        : "~/Views/Shared/_Layout.cshtml";
+}

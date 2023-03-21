@@ -1,0 +1,94 @@
+﻿@model WebsiteDocTruyen.ViewModels.StoryViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Stories", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <strong>Tên truyện</strong>
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+
+    <div class="form-group">
+        <strong>Tác giả</strong>
+        @Html.TextBoxFor(m => m.Author, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Author)
+    </div>
+
+    <div class="form-group">
+        <strong>Giới thiệu</strong>
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <strong style="display: inline-block">Hình ảnh</strong>
+            @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Img)
+            <input type="button" id="btnUpload" value="Chọn hình ảnh" class="btn btn-success" style="margin-top:4px" />
+            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                   style="display:none;" />
+            <img src="" id="pictureUpload" style="display: block; margin-top: 5px" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <strong>Thể loại</strong>
+        @Html.ListBoxFor(m => m.SelectedGenres, new SelectList(Model.Genres, "GenreID", "Name"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SelectedGenres)
+    </div>
+
+    @Html.HiddenFor(m => m.StoryID)
+
+    <button type="submit" class="btn btn-primary" style="margin-top:4px">Save</button>
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@section upload
+{
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
+        });
+        $('#fileUpload').change(function () {
+            if (window.FormData !== undefined) {
+                var fileUpload = $('#fileUpload').get(0);
+                var files = fileUpload.files;
+                var formData = new FormData();
+                formData.append('file', files[0]);
+
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '/Stories/ProcessUpload',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+
+                            $('#pictureUpload').attr('src', urlImage);
+                            $('#Img').val(urlImage);
+                        },
+                        error: function (err) {
+                            alert('Error ', err.statusText);
+                        }
+                    });
+            }
+        });
+    </script>
+}
