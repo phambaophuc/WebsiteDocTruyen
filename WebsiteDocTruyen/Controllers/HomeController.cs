@@ -52,6 +52,7 @@ namespace WebsiteDocTruyen.Controllers
             return View(story);
         }
 
+        // hiện chapter của từng truyện
         public ActionResult Chapters(int storyId)
         {
             var story = _dbContext.Stories.Include(s => s.Chapters).SingleOrDefault(s => s.StoryID == storyId);
@@ -62,7 +63,7 @@ namespace WebsiteDocTruyen.Controllers
             return View(story);
         }
 
-        // lưu lịch sử đọc vào database
+        // Phương thức đọc truyện
         public ActionResult Read(int storyId, int chapterId)
         {
             var chapter = _dbContext.Chapters.Include(c => c.Story).FirstOrDefault(c => c.ChapterID == chapterId);
@@ -90,21 +91,37 @@ namespace WebsiteDocTruyen.Controllers
                     .Select(c => c.ChapterID)
                     .FirstOrDefault()
             };
-            var userId = User.Identity.GetUserId();
 
-            if (User.Identity.IsAuthenticated)
-            {
-                var history = new History
-                {
-                    ChapterID = chapterId,
-                    DateRead = DateTime.Now,
-                    UserID = userId
-                };
-                _dbContext.History.Add(history);
-                _dbContext.SaveChanges();
-            }
+            UpdateHistory(chapterId);
 
             return View(viewModel);
+        }
+
+        // Lưu vào history khi đọc truyện
+        public void UpdateHistory(int chapterId)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var existingHistory = _dbContext.History.FirstOrDefault(h => h.ChapterID == chapterId && h.UserID == userId);
+
+                if (existingHistory != null)
+                {
+                    existingHistory.DateRead = DateTime.Now;
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    var newHistory = new History
+                    {
+                        ChapterID = chapterId,
+                        DateRead = DateTime.Now,
+                        UserID = userId
+                    };
+                    _dbContext.History.Add(newHistory);
+                    _dbContext.SaveChanges();
+                }
+            }
         }
 
         // hiện lịch sử đọc
@@ -112,16 +129,12 @@ namespace WebsiteDocTruyen.Controllers
         public ActionResult History()
         {
             var userId = User.Identity.GetUserId();
-            /*var history = _dbContext.History.Include(h => h.Chapter)
-                                            .Include(c => c.Chapter.Story)
-                                            .Where(h => h.UserID == userId)
-                                            .OrderByDescending(h => h.DateRead)
-                                            .ToList();*/
+
             var history = _dbContext.History.Include(h => h.Chapter.Story)
-                                                    .Where(h => h.UserID == userId)
-                                                    .GroupBy(h => h.Chapter.StoryID)
-                                                    .Select(g => g.OrderByDescending(h => h.DateRead).FirstOrDefault())
-                                                    .ToList();
+                                            .Where(h => h.UserID == userId)
+                                            .GroupBy(h => h.Chapter.StoryID)
+                                            .Select(g => g.OrderByDescending(h => h.DateRead).FirstOrDefault())
+                                            .ToList();
 
             var viewModel = new HistoryViewModel()
             {
