@@ -62,6 +62,7 @@ namespace WebsiteDocTruyen.Controllers
             return View(story);
         }
 
+        // lưu lịch sử đọc vào database
         public ActionResult Read(int storyId, int chapterId)
         {
             var chapter = _dbContext.Chapters.Include(c => c.Story).FirstOrDefault(c => c.ChapterID == chapterId);
@@ -106,5 +107,36 @@ namespace WebsiteDocTruyen.Controllers
             return View(viewModel);
         }
 
+        // hiện lịch sử đọc
+        [Authorize]
+        public ActionResult History()
+        {
+            var userId = User.Identity.GetUserId();
+            /*var history = _dbContext.History.Include(h => h.Chapter)
+                                            .Include(c => c.Chapter.Story)
+                                            .Where(h => h.UserID == userId)
+                                            .OrderByDescending(h => h.DateRead)
+                                            .ToList();*/
+            var history = _dbContext.History.Include(h => h.Chapter.Story)
+                                                    .Where(h => h.UserID == userId)
+                                                    .GroupBy(h => h.Chapter.StoryID)
+                                                    .Select(g => g.OrderByDescending(h => h.DateRead).FirstOrDefault())
+                                                    .ToList();
+
+            var viewModel = new HistoryViewModel()
+            {
+                HistoryItems = history.Select(h => new HistoryViewModel()
+                {
+                    StoryID = h.Chapter.StoryID,
+                    StoryTitle = h.Chapter.Story.Title,
+                    StoryImg = h.Chapter.Story.Img,
+                    ChapterID = h.ChapterID,
+                    ChapterTitle = h.Chapter.Title,
+                    DateRead = h.DateRead
+                }).ToList()
+            };
+
+            return View(viewModel);
+        }
     }
 }

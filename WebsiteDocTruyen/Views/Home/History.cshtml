@@ -1,0 +1,56 @@
+﻿@model WebsiteDocTruyen.ViewModels.HistoryViewModel
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lịch sử đọc truyện</h2>
+<hr class="col-3"/>
+@if (Model.HistoryItems.Count == 0)
+{
+    <p>Bạn chưa đọc truyện nào hết!</p>
+}
+else
+{
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th>Tên Truyện</th>
+                    <th>Chương</th>
+                    <th>Thời gian đọc</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.HistoryItems)
+                {
+                    <tr>
+                        <td>@item.StoryTitle</td>
+                        <td>@item.ChapterTitle</td>
+                        <td>@item.DateRead.ToString("MM/dd/yyyy hh:mm tt")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    @foreach (var item in Model.HistoryItems)
+                    {
+                        <div class="col-md-3 mb-5">
+                            <div class="card-group h-100 text-center">
+                                <img src="@item.StoryImg" class="card-img-top" alt="@item.StoryTitle">
+                                <div class="card-body text-center text-truncate">
+                                    <a class="card-title text-decoration-none"
+                                       href="@Url.Action("Details", "Home", new { id = item.StoryID })" style="font-size:16px">@item.StoryTitle</a>
+                                </div>
+                                <a class="card-title text-decoration-none text-success text-truncate"
+                                   href="@Url.Action("Read", "Home", new { storyId = item.StoryID, chapterId = item.ChapterID })">@item.ChapterTitle</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
