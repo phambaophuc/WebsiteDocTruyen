@@ -24,8 +24,9 @@
                     <div class="col-md-2 mb-5">
                         <div class="card-group h-100">
                             <img src="@story.Img" class="card-img-top" alt="@story.Title">
-                            <div class="card-body text-center text-truncate">
-                                <a class="card-title text-decoration-none" href="@Url.Action("Details", "Home", new { id = story.StoryID })" style="font-size:16px">@story.Title</a>
+                            <div class="card-body text-center text-truncate fw-bold">
+                                <a class="text-decoration-none"
+                                   href="@Url.Action("Details", "Home", new { id = story.StoryID })" style="font-size:0.8rem">@story.Title</a>
                             </div>
                         </div>
                     </div>

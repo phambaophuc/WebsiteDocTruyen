@@ -12,25 +12,6 @@
 }
 else
 {
-    @*<table class="table">
-            <thead>
-                <tr>
-                    <th>Tên Truyện</th>
-                    <th>Chương</th>
-                    <th>Thời gian đọc</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.HistoryItems)
-                {
-                    <tr>
-                        <td>@item.StoryTitle</td>
-                        <td>@item.ChapterTitle</td>
-                        <td>@item.DateRead.ToString("MM/dd/yyyy hh:mm tt")</td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@
     <div class="container">
         <div class="row">
             <div class="col-md-7">

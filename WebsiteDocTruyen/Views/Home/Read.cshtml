@@ -5,9 +5,11 @@
 }
 
 <h2 class="text-center text-uppercase">@Model.StoryTitle</h2>
-<h5 class="text-center">@Model.Title</h5>
+<h5 class="text-center" style="margin-bottom:20px">@Model.Title</h5>
 
-@Html.Raw(new MarkdownSharp.Markdown().Transform(Model.Content))
+<div style="font-size:24px">
+    @Html.Raw(new MarkdownSharp.Markdown().Transform(Model.Content))
+</div>
 
 <div class="text-center">
     @if (Model.PreviousChapterID != 0)
