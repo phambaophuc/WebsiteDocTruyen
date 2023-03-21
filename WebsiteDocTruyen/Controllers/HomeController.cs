@@ -9,6 +9,7 @@ using WebsiteDocTruyen.ViewModels;
 using System.IO;
 using System.Threading.Tasks;
 using PagedList;
+using Microsoft.AspNet.Identity;
 
 namespace WebsiteDocTruyen.Controllers
 {
@@ -88,6 +89,19 @@ namespace WebsiteDocTruyen.Controllers
                     .Select(c => c.ChapterID)
                     .FirstOrDefault()
             };
+            var userId = User.Identity.GetUserId();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var history = new History
+                {
+                    ChapterID = chapterId,
+                    DateRead = DateTime.Now,
+                    UserID = userId
+                };
+                _dbContext.History.Add(history);
+                _dbContext.SaveChanges();
+            }
 
             return View(viewModel);
         }

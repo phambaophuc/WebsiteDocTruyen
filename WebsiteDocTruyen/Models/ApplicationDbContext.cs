@@ -14,6 +14,7 @@ namespace WebsiteDocTruyen.Models
         public DbSet<Chapter> Chapters { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<History> History { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
