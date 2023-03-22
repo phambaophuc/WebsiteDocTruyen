@@ -56,3 +56,19 @@ a.navbar-brand {
     color: #454545
 }
 /* End - My Style */
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 80px; /* Footer height */
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 72px; /* Footer height */
+}
