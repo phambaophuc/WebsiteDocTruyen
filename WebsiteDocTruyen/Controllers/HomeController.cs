@@ -20,8 +20,12 @@ namespace WebsiteDocTruyen.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
-        public ActionResult Index(string searchString, int genreID = 0)
+        public ActionResult Index(int? page, string searchString, int genreID = 0)
         {
+            if (page == null) page = 1;
+            int pageSize = 8;
+            int pageNum = page ?? 1;
+
             ViewBag.Keyword = searchString;
 
             var stories = _dbContext.Stories.Include(s => s.Genres);
@@ -37,7 +41,7 @@ namespace WebsiteDocTruyen.Controllers
 
             ViewBag.GenreID = new SelectList(_dbContext.Genres, "GenreID", "Name");
 
-            return View(stories.ToList());
+            return View(stories.ToList().ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult Details(int id)
@@ -151,5 +155,7 @@ namespace WebsiteDocTruyen.Controllers
 
             return View(viewModel);
         }
+
+
     }
 }
