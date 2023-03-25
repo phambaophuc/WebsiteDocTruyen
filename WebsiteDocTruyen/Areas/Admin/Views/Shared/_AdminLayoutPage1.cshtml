@@ -34,29 +34,26 @@
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
                         <a class="nav-link mx-2" aria-current="page" href="@Url.Action("Index", "Stories", new { area = "Admin" })">
-                            <i class="fa-sharp fa-solid fa-book"></i> Truyện</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Tác vụ
+                            <i class="fa-sharp fa-solid fa-book"></i> Truyện
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="@Url.Action("Create", "Stories", new { area = "Admin" })">Thêm truyện</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index", "Roles", new { area = "Admin" })">Danh sách vai trò</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index", "Home", new { area = "" })">Về trang chủ</a></li>
-                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="@Url.Action("Create", "Stories", new { area = "Admin" })">
+                            <i class="fa-sharp fa-solid fa-plus"></i> Thêm truyện
+                        </a>
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link mx-2" href="@Url.Action("Index", "Roles", new { area = "Admin" })">
+                            <i class="fa-sharp fa-solid fa-list"></i> Danh sách vai trò
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="@Url.Action("Index", "Home", new { area = "" })">
+                            <i class="fa-sharp fa-solid fa-right-to-bracket"></i> Về trang chủ
+                        </a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link mx-5 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-sharp fa-solid fa-user-tie"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            @Html.Partial("_LoginPartial")
-                        </ul>
-                    </li>
-                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>

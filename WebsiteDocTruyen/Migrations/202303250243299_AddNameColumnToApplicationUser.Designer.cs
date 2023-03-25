@@ -13,7 +13,7 @@ namespace WebsiteDocTruyen.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202303151405487_AddNameColumnToApplicationUser"; }
+            get { return "202303250243299_AddNameColumnToApplicationUser"; }
         }
         
         string IMigrationMetadata.Source

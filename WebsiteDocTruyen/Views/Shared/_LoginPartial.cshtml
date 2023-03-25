@@ -5,16 +5,26 @@
     {
         @Html.AntiForgeryToken()
 
-        <li class="dropdown-item">
-            @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
-        </li>
-        <li class="dropdown-item">
-            <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
-        </li>
+        <div class="navbar-nav ms-auto d-none d-lg-inline-flex">
+            <div class="nav-item dropdown">
+                <a class="nav-link mx-5 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-item"><a class="nav-link" href="@Url.Action("History", "Home")">Lịch sử đọc truyện</a></div>
+                    <div class="dropdown-item">
+                        @Html.ActionLink("Cài đặt thông tin", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+                    </div>
+                    <div class="dropdown-item">
+                        <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 }
 else
 {
-    <li class="dropdown-item">@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-    <li class="dropdown-item">@Html.ActionLink("Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+    @Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
+    @Html.ActionLink("Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
 }

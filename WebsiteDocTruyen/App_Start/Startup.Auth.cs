@@ -5,6 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using Microsoft.Owin.Security.DataProtection;
+using Microsoft.AspNet.Identity.EntityFramework;
 using WebsiteDocTruyen.Models;
 
 namespace WebsiteDocTruyen
@@ -18,6 +20,7 @@ namespace WebsiteDocTruyen
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -34,7 +37,7 @@ namespace WebsiteDocTruyen
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -58,11 +61,11 @@ namespace WebsiteDocTruyen
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "911677947800-if0b39smej6de3t4eilmm3ca989mm7a3.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }

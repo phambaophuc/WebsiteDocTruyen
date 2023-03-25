@@ -53,6 +53,18 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.4.3.0\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.20\lib\net461\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -62,12 +74,17 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -200,13 +217,13 @@
     <Compile Include="Migrations\202303150756253_CreateGenres.designer.cs">
       <DependentUpon>202303150756253_CreateGenres.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202303151405487_AddNameColumnToApplicationUser.cs" />
-    <Compile Include="Migrations\202303151405487_AddNameColumnToApplicationUser.designer.cs">
-      <DependentUpon>202303151405487_AddNameColumnToApplicationUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202303210352290_CreateTableHistory.cs" />
     <Compile Include="Migrations\202303210352290_CreateTableHistory.designer.cs">
       <DependentUpon>202303210352290_CreateTableHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303250243299_AddNameColumnToApplicationUser.cs" />
+    <Compile Include="Migrations\202303250243299_AddNameColumnToApplicationUser.designer.cs">
+      <DependentUpon>202303250243299_AddNameColumnToApplicationUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -364,6 +381,7 @@
     <Content Include="Views\Home\Chapters.cshtml" />
     <Content Include="Views\Home\Read.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
+    <Content Include="Views\Account\NotificationRegisterSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,11 +422,11 @@
     <EmbeddedResource Include="Migrations\202303150756253_CreateGenres.resx">
       <DependentUpon>202303150756253_CreateGenres.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202303151405487_AddNameColumnToApplicationUser.resx">
-      <DependentUpon>202303151405487_AddNameColumnToApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303210352290_CreateTableHistory.resx">
       <DependentUpon>202303210352290_CreateTableHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303250243299_AddNameColumnToApplicationUser.resx">
+      <DependentUpon>202303250243299_AddNameColumnToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
