@@ -1,17 +1,21 @@
-﻿@model WebsiteDocTruyen.ViewModels.HistoryViewModel
+﻿
+@model WebsiteDocTruyen.ViewModels.HistoryViewModel
 @{
     ViewBag.Title = "History";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Lịch sử đọc truyện</h2>
-<hr class="col-3"/>
+<hr class="col-3" />
 @if (Model.HistoryItems.Count == 0)
 {
     <p>Bạn chưa đọc truyện nào hết!</p>
 }
 else
 {
+    <span onclick="return confirm('Bạn có muốn xoá tất cả?')">
+        <a href="@Url.Action("DeleteAllHistory", "Home")" class="btn btn-danger">Xoá tất cả</a>
+    </span>
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -28,6 +32,9 @@ else
                                 </div>
                                 <a class="card-title text-decoration-none text-success text-truncate"
                                    href="@Url.Action("Read", "Home", new { storyId = item.StoryID, chapterId = item.ChapterID })">@item.ChapterTitle</a>
+                                <span onclick="return confirm('Bạn có muốn xoá?')">
+                                    <a href="@Url.Action("DeleteHistory", "Home", new { id = item.HistoryID})" class="btn btn-danger">Xoá</a>
+                                </span>
                             </div>
                         </div>
                     }
