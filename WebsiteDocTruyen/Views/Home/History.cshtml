@@ -5,34 +5,44 @@
 }
 
 <h2>Lịch sử đọc truyện</h2>
-<hr class="col-3"/>
+<hr class="col-3" />
 @if (Model.HistoryItems.Count == 0)
 {
     <p>Bạn chưa đọc truyện nào hết!</p>
 }
 else
 {
+    <span onclick="return confirm('Bạn có muốn xoá tất cả lịch sử đọc?')">
+        <a href="@Url.Action("DeleteAllHistory", "Home")" class="btn btn-danger fa-pull-right">Xoá tất cả</a>
+    </span>
     <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="row">
-                    @foreach (var item in Model.HistoryItems)
-                    {
-                        <div class="col-md-3 mb-5">
-                            <div class="card-group h-100 text-center">
-                                <span class="text-danger">@item.DateRead.ToString("dd/MM/yyyy hh:mm tt")</span>
-                                <img src="@item.StoryImg" class="card-img-top" alt="@item.StoryTitle">
-                                <div class="card-body text-center text-truncate">
-                                    <a class="card-title text-decoration-none"
-                                       href="@Url.Action("Details", "Home", new { id = item.StoryID })" style="font-size:16px">@item.StoryTitle</a>
-                                </div>
-                                <a class="card-title text-decoration-none text-success text-truncate"
-                                   href="@Url.Action("Read", "Home", new { storyId = item.StoryID, chapterId = item.ChapterID })">@item.ChapterTitle</a>
-                            </div>
+        <div class="row col-md-6">
+            @foreach (var item in Model.HistoryItems)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card-group h-100">
+                        <div class="card-body text-center text-truncate">
+                            <a class="card-title text-decoration-none"
+                               href="@Url.Action("Details", "Home", new { id = item.StoryID })" style="font-size:16px">@item.StoryTitle</a>
                         </div>
-                    }
+
+                        <div class="position-relative">
+                            <img src="@item.StoryImg" class="img-fluid" alt="@item.StoryTitle">
+                            <span onclick="return confirm('Bạn có muốn xoá lịch sử đọc của truyện này?')" class="position-absolute" style="top:0;right:4px">
+                                <a href="@Url.Action("DeleteHistory", "Home", new { id = item.HistoryID})">
+                                    <i class="fa-sharp fa-solid fa-delete-left"></i>
+                                </a>
+                            </span>
+                        </div>
+
+                        <a class="card-title text-decoration-none text-success text-truncate"
+                           href="@Url.Action("Read", "Home", new { storyId = item.StoryID, chapterId = item.ChapterID })">@item.ChapterTitle
+                        </a>
+
+                        <span class="text-secondary">@item.DateRead.ToString("dd/MM/yyyy hh:mm tt")</span>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 }

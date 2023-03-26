@@ -144,6 +144,7 @@ namespace WebsiteDocTruyen.Controllers
             {
                 HistoryItems = history.Select(h => new HistoryViewModel()
                 {
+                    HistoryID = h.HistoryID,
                     StoryID = h.Chapter.StoryID,
                     StoryTitle = h.Chapter.Story.Title,
                     StoryImg = h.Chapter.Story.Img,
@@ -156,6 +157,28 @@ namespace WebsiteDocTruyen.Controllers
             return View(viewModel);
         }
 
+        // Xoá truyện cần xoá trọng lịch sử
+        public ActionResult DeleteHistory(int id)
+        {
+            var history = _dbContext.History.Find(id);
 
+            if (history == null)
+            {
+                return HttpNotFound();
+            }
+
+            _dbContext.History.Remove(history);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("History");
+        }
+        // Xoá tất cả truyện trong lịch sử
+        public ActionResult DeleteAllHistory()
+        {
+            var userId = User.Identity.GetUserId();
+            _dbContext.History.Where(h => h.UserID == userId).ToList().ForEach(p => _dbContext.History.Remove(p));
+            _dbContext.SaveChanges();
+            return RedirectToAction("History");
+        }
     }
 }
