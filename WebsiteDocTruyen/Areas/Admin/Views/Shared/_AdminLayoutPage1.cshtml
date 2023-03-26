@@ -15,7 +15,7 @@
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
+    @*<nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
         <div class="container">
             <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "Admin"} )">ADMIN PAGE</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,10 +65,65 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>*@
 
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="@Url.Action("Index", "Home", new { area = "Admin"} )" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">ADMIN PAGE</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Stories", new { area = "Admin" })" class="nav-link align-middle px-0">
+                                <i class="fa-sharp fa-solid fa-book"></i> <span class="ms-1 d-none d-sm-inline"> Truyện</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Create", "Stories", new { area = "Admin" })" class="nav-link px-0 align-middle">
+                                <i class="fa-sharp fa-solid fa-plus"></i> <span class="ms-1 d-none d-sm-inline"> Thêm truyện</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index", "Roles", new { area = "Admin" })" class="nav-link px-0 align-middle">
+                                <i class="fa-sharp fa-solid fa-list"></i> <span class="ms-1 d-none d-sm-inline"> Danh sách vai trò</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index", "Home", new { area = "" })" class="nav-link px-0 align-middle link-success">
+                                <i class="fa-sharp fa-solid fa-right-to-bracket"></i> <span class="ms-1 d-none d-sm-inline"> Về trang chủ</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="pb-4">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a class="nav-link mx-2 link-danger" href="javascript:document.getElementById('logoutForm').submit()">
+                                    <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="@Url.Action("Login", "Account", new { area = "" })">
+                                <i class="fa-sharp fa-solid fa-share"></i> Đăng nhập
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col py-3">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

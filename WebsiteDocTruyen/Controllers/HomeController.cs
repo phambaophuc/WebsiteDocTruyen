@@ -156,7 +156,7 @@ namespace WebsiteDocTruyen.Controllers
             return View(viewModel);
         }
 
-        // Xoá truyện cần xoá trọng lịch sử
+        // Xoá truyện cần xoá trong lịch sử
         public ActionResult DeleteHistory(int id)
         {
             var userId = User.Identity.GetUserId();
