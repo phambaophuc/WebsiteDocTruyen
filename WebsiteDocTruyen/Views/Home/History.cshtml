@@ -33,7 +33,7 @@ else
                                 <a class="card-title text-decoration-none text-success text-truncate"
                                    href="@Url.Action("Read", "Home", new { storyId = item.StoryID, chapterId = item.ChapterID })">@item.ChapterTitle</a>
                                 <span onclick="return confirm('Bạn có muốn xoá?')">
-                                    <a href="@Url.Action("DeleteHistory", "Home", new { id = item.HistoryID})" class="btn btn-danger">Xoá</a>
+                                    <a href="@Url.Action("DeleteHistory", "Home", new { id = item.StoryID})" class="btn btn-danger">Xoá</a>
                                 </span>
                             </div>
                         </div>

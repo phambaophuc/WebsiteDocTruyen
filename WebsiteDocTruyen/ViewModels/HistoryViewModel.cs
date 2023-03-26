@@ -7,7 +7,6 @@ namespace WebsiteDocTruyen.ViewModels
 {
     public class HistoryViewModel
     {
-        public int HistoryID { get; set; }
         public int StoryID { get; set; }
         public string StoryTitle { get; set; }
         public string StoryImg { get; set; }
