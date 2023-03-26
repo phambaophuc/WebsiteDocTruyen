@@ -144,7 +144,6 @@ namespace WebsiteDocTruyen.Controllers
             {
                 HistoryItems = history.Select(h => new HistoryViewModel()
                 {
-                    HistoryID = h.HistoryID,
                     StoryID = h.Chapter.StoryID,
                     StoryTitle = h.Chapter.Story.Title,
                     StoryImg = h.Chapter.Story.Img,
@@ -159,16 +158,9 @@ namespace WebsiteDocTruyen.Controllers
 
         public ActionResult DeleteHistory(int id)
         {
-            var history = _dbContext.History.Find(id);
-
-            if (history == null)
-            {
-                return HttpNotFound();
-            }
-
-            _dbContext.History.Remove(history);
+            var userId = User.Identity.GetUserId();
+            _dbContext.History.Where(h => h.UserID == userId && h.Chapter.StoryID == id).ToList().ForEach(p => _dbContext.History.Remove(p));
             _dbContext.SaveChanges();
-
             return RedirectToAction("History");
         }
 
