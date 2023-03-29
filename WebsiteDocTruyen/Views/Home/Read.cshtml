@@ -16,7 +16,7 @@
     {
         <a class="btn btn-outline-success" href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = Model.PreviousChapterID })">Chương trước</a>
     }
-    <a class="btn btn-outline-primary" href="@Url.Action("Details", "Home", new { id = Model.StoryID })"><i class="fas fa-contact-book"></i></a>
+    <a class="btn btn-outline-primary" href="@Url.Action("Details", "Stories", new { id = Model.StoryID })"><i class="fas fa-contact-book"></i></a>
     @if (Model.NextChapterID != 0)
     {
         <a class="btn btn-outline-success" href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = Model.NextChapterID })">Chương tiếp</a>

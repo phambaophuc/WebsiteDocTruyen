@@ -24,13 +24,13 @@
                 {
                     <div class="col-md-3 mb-5">
                         <div class="bg-image">
-                            <a href="@Url.Action("Details", "Home", new { id = story.StoryID })">
+                            <a href="@Url.Action("Details", "Stories", new { id = story.StoryID })">
                                 <img src="@story.Img" class="img-fluid" />
                             </a>
                             <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                                 <div class="d-flex justify-content-center align-items-center h-100 text-truncate fw-bold">
                                     <a class="text-decoration-none text-white mb-0" style="font-size:0.9rem"
-                                       href="@Url.Action("Details", "Home", new { id = story.StoryID })">@story.Title</a>
+                                       href="@Url.Action("Details", "Stories", new { id = story.StoryID })">@story.Title</a>
                                 </div>
                             </div>
                         </div>

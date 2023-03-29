@@ -44,29 +44,6 @@ namespace WebsiteDocTruyen.Controllers
             return View(stories.ToList().ToPagedList(pageNum, pageSize));
         }
 
-        public ActionResult Details(int id)
-        {
-            var story = _dbContext.Stories.Include(s => s.Genres).FirstOrDefault(s => s.StoryID == id);
-
-            if (story == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(story);
-        }
-
-        // hiện chapter của từng truyện
-        public ActionResult Chapters(int storyId)
-        {
-            var story = _dbContext.Stories.Include(s => s.Chapters).SingleOrDefault(s => s.StoryID == storyId);
-            if (story == null)
-            {
-                return HttpNotFound();
-            }
-            return View(story);
-        }
-
         // Phương thức đọc truyện
         public ActionResult Read(int storyId, int chapterId)
         {
@@ -126,53 +103,6 @@ namespace WebsiteDocTruyen.Controllers
                     _dbContext.SaveChanges();
                 }
             }
-        }
-
-        // hiện lịch sử đọc
-        [Authorize]
-        public ActionResult History()
-        {
-            var userId = User.Identity.GetUserId();
-
-            var history = _dbContext.History.Include(h => h.Chapter.Story)
-                                            .Where(h => h.UserID == userId)
-                                            .GroupBy(h => h.Chapter.StoryID)
-                                            .Select(g => g.OrderByDescending(h => h.DateRead).FirstOrDefault())
-                                            .ToList();
-
-            var viewModel = new HistoryViewModel()
-            {
-                HistoryItems = history.Select(h => new HistoryViewModel()
-                {
-                    StoryID = h.Chapter.StoryID,
-                    StoryTitle = h.Chapter.Story.Title,
-                    StoryImg = h.Chapter.Story.Img,
-                    ChapterID = h.ChapterID,
-                    ChapterTitle = h.Chapter.Title,
-                    DateRead = h.DateRead
-                }).ToList()
-            };
-
-            return View(viewModel);
-        }
-
-        // Xoá truyện cần xoá trong lịch sử
-        public ActionResult DeleteHistory(int id)
-        {
-            var userId = User.Identity.GetUserId();
-
-            _dbContext.History.Where(h => h.UserID == userId && h.Chapter.StoryID == id).ToList().ForEach(p => _dbContext.History.Remove(p));
-            _dbContext.SaveChanges();
-
-            return RedirectToAction("History");
-        }
-        // Xoá tất cả truyện trong lịch sử
-        public ActionResult DeleteAllHistory()
-        {
-            var userId = User.Identity.GetUserId();
-            _dbContext.History.Where(h => h.UserID == userId).ToList().ForEach(p => _dbContext.History.Remove(p));
-            _dbContext.SaveChanges();
-            return RedirectToAction("History");
         }
     }
 }

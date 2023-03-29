@@ -200,8 +200,11 @@
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StoriesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChaptersController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -377,15 +380,16 @@
     <Content Include="Areas\Admin\Views\Stories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Stories\Search.cshtml" />
     <Content Include="Areas\Admin\Views\Stories\Details.cshtml" />
-    <Content Include="Views\Home\Details.cshtml" />
-    <Content Include="Views\Home\Chapters.cshtml" />
     <Content Include="Views\Home\Read.cshtml" />
-    <Content Include="Views\Home\History.cshtml" />
     <Content Include="Views\Account\NotificationRegisterSuccess.cshtml" />
+    <Content Include="Views\Stories\Details.cshtml" />
+    <Content Include="Views\Stories\ChapterOfStory.cshtml" />
+    <Content Include="Views\History\ReadingHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Chapters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

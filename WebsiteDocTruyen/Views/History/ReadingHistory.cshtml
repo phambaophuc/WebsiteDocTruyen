@@ -13,7 +13,7 @@
 else
 {
     <span onclick="return confirm('Bạn có muốn xoá tất cả lịch sử đọc?')">
-        <a href="@Url.Action("DeleteAllHistory", "Home")" class="btn btn-danger fa-pull-right">Xoá tất cả</a>
+        <a href="@Url.Action("DeleteAllHistory", "History")" class="btn btn-danger fa-pull-right">Xoá tất cả</a>
     </span>
     <div class="container">
         <div class="row col-md-6">
@@ -23,26 +23,27 @@ else
                     <div class="card-group h-100">
                         <div class="card-body text-center text-truncate">
                             <a class="card-title text-decoration-none fw-bold"
-                               href="@Url.Action("Details", "Home", new { id = item.StoryID })" style="font-size:16px">@item.StoryTitle</a>
+                               href="@Url.Action("Details", "Stories", new { id = item.StoryID })" style="font-size:16px">@item.StoryTitle</a>
                         </div>
 
                         <div class="position-relative">
                             <img src="@item.StoryImg" class="img-fluid" alt="@item.StoryTitle">
                             <span onclick="return confirm('Bạn có muốn xoá lịch sử đọc của truyện @item.StoryTitle?')" class="position-absolute" style="top:0;right:4px">
-                                <a href="@Url.Action("DeleteHistory", "Home", new { id = item.StoryID})">
+                                <a href="@Url.Action("DeleteHistory", "History", new { id = item.StoryID })">
                                     <i class="fa-sharp fa-solid fa-delete-left"></i>
                                 </a>
                             </span>
                         </div>
 
                         <a class="card-title text-decoration-none text-success text-truncate"
-                           href="@Url.Action("Read", "Home", new { storyId = item.StoryID, chapterId = item.ChapterID })">@item.ChapterTitle
+                           href="@Url.Action("Read", "Home", new { storyId = item.StoryID, chapterId = item.ChapterID })">
+                            @item.ChapterTitle
                         </a>
 
-                        <span class="text-secondary">@item.DateRead.ToString("dd/MM/yyyy hh:mm tt")</span>
-                    </div>
+                    <span class="text-secondary">@item.DateRead.ToString("dd/MM/yyyy hh:mm tt")</span>
                 </div>
-            }
+            </div>
+        }
         </div>
     </div>
 }
