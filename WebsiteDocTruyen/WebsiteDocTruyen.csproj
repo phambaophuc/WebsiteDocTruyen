@@ -331,6 +331,7 @@
     <Content Include="lib\font-awesome\webfonts\fa-v4compatibility.woff2" />
     <Content Include="Areas\Admin\Views\Stories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Chapters\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Chapters\Edit.cshtml" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />

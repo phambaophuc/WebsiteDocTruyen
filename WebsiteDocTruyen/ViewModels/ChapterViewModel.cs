@@ -9,6 +9,7 @@ namespace WebsiteDocTruyen.ViewModels
 {
     public class ChapterViewModel
     {
+        public int ChapterID { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]
