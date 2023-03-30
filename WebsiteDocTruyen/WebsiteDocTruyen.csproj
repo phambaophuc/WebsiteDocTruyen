@@ -265,6 +265,7 @@
     <Content Include="Content\Images\dao-tinh.jpg" />
     <Content Include="Content\Images\kiem-dao-doc-ton.jpg" />
     <Content Include="Content\Images\lan_kha_ky_duyen.jpg" />
+    <Content Include="Content\Images\livegiaiphau.jpg" />
     <Content Include="Content\Images\pham-nhan-tu-tien.jpg" />
     <Content Include="Content\Images\Vu_luyen_dien_phong.jpg" />
     <Content Include="Content\PagedList.css" />
