@@ -15,57 +15,6 @@
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <body>
-    @*<nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
-        <div class="container">
-            <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "Admin"} )">ADMIN PAGE</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            @using (Html.BeginForm("Index", "Stories", new { area = "Admin" }, FormMethod.Get, new { @class = "form-inline" }))
-            {
-                <div class="input-group rounded">
-                    <input type="search" name="searchString" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </div>
-            }
-            <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto ">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" aria-current="page" href="@Url.Action("Index", "Stories", new { area = "Admin" })">
-                            <i class="fa-sharp fa-solid fa-book"></i> Truyện
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="@Url.Action("Create", "Stories", new { area = "Admin" })">
-                            <i class="fa-sharp fa-solid fa-plus"></i> Thêm truyện
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="@Url.Action("Index", "Roles", new { area = "Admin" })">
-                            <i class="fa-sharp fa-solid fa-list"></i> Danh sách vai trò
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="@Url.Action("Index", "Home", new { area = "" })">
-                            <i class="fa-sharp fa-solid fa-right-to-bracket"></i> Về trang chủ
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        @if (Request.IsAuthenticated)
-                        {
-                            using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <a class="nav-link mx-2" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
-                            }
-                        }
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>*@
 
     <div class="container-fluid">
         <div class="row flex-nowrap">

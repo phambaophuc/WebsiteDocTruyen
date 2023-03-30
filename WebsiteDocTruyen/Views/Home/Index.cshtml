@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<WebsiteDocTruyen.Models.Story>
 @using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/shared/_Layout.cshtml";
@@ -15,7 +16,7 @@
     </select>
 </div>
 <hr />
-<div class="container">
+<div class="container" id="story-list">
     <div class="row">
         <div class="col-md-8">
             <h2>Mới cập nhật</h2>
@@ -93,6 +94,7 @@
         });
     });
 </script>
+
 <style>
     .show-read-more .more-text {
         display: none;

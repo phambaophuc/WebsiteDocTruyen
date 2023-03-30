@@ -6,7 +6,7 @@
 
 <h2>Thêm truyện</h2>
 
-@using (Html.BeginForm("Create", "Stories", new { area = "Admin"}))
+@using (Html.BeginForm("Create", "Stories", new { area = "Admin" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-group">
@@ -31,11 +31,11 @@
         <div class="col-md-10">
             <strong style="display: inline-block">Hình ảnh</strong>
             @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Img)
             <input type="button" id="btnUpload" value="Chọn hình ảnh" class="btn btn-success" style="margin-top:4px" />
             <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
                    style="display:none;" />
             <img src="" id="pictureUpload" style="display: block; margin-top: 5px" />
+            @Html.ValidationMessageFor(model => model.Img)
         </div>
     </div>
 
@@ -46,9 +46,6 @@
 
     <button type="submit" class="btn btn-primary" style="margin-top: 4px">Thêm</button>
 }
-
-
-
 
 @section upload
 {
@@ -68,7 +65,7 @@
                 $.ajax(
                     {
                         type: 'POST',
-                        url: '/Stories/ProcessUpload',
+                        url: '/Admin/Stories/ProcessUpload',
                         contentType: false,
                         processData: false,
                         data: formData,
