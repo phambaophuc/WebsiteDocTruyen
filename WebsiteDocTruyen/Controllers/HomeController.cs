@@ -10,6 +10,7 @@ using System.IO;
 using System.Threading.Tasks;
 using PagedList;
 using Microsoft.AspNet.Identity;
+using Microsoft.Ajax.Utilities;
 
 namespace WebsiteDocTruyen.Controllers
 {
@@ -23,7 +24,7 @@ namespace WebsiteDocTruyen.Controllers
         public ActionResult Index(int? page, string searchString, int genreID = 0)
         {
             if (page == null) page = 1;
-            int pageSize = 8;
+            int pageSize = 12;
             int pageNum = page ?? 1;
 
             ViewBag.Keyword = searchString;
@@ -42,6 +43,13 @@ namespace WebsiteDocTruyen.Controllers
             ViewBag.GenreID = new SelectList(_dbContext.Genres, "GenreID", "Name");
 
             return View(stories.ToList().ToPagedList(pageNum, pageSize));
+        }
+
+        public ActionResult Search(string searchString)
+        {
+            var stories = _dbContext.Stories.ToList();
+            var searchResults = stories.Where(s => s.Title.StartsWith(searchString)).ToList();
+            return Json(searchResults, JsonRequestBehavior.AllowGet);
         }
 
         // Phương thức đọc truyện

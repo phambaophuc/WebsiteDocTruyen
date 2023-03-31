@@ -4,7 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lịch sử đọc truyện</h2>
+<h2 class="d-inline-block">Lịch sử đọc truyện</h2>
+<span onclick="return confirm('Bạn có muốn xoá tất cả lịch sử đọc?')">
+    <a href="@Url.Action("DeleteAllHistory", "History")" class="btn btn-danger fa-pull-right">Xoá tất cả</a>
+</span>
 <hr class="col-3" />
 @if (Model.HistoryItems.Count == 0)
 {
@@ -12,14 +15,11 @@
 }
 else
 {
-    <span onclick="return confirm('Bạn có muốn xoá tất cả lịch sử đọc?')">
-        <a href="@Url.Action("DeleteAllHistory", "History")" class="btn btn-danger fa-pull-right">Xoá tất cả</a>
-    </span>
     <div class="container">
-        <div class="row col-md-6">
+        <div class="row">
             @foreach (var item in Model.HistoryItems)
             {
-                <div class="col-md-4 mb-4" style="max-width:220px">
+                <div class="col-md-3 mb-4" style="max-width:220px">
                     <div class="card-group h-100">
                         <div class="card-body text-center">
                             <a class="card-title text-decoration-none fw-bold text-truncate"
@@ -40,10 +40,10 @@ else
                             @item.ChapterTitle
                         </a>
 
-                    <span class="text-secondary">@item.DateRead.ToString("dd/MM/yyyy hh:mm tt")</span>
+                        <span class="text-secondary">@item.DateRead.ToString("dd/MM/yyyy")</span>
+                    </div>
                 </div>
-            </div>
-        }
+            }
         </div>
     </div>
 }

@@ -263,9 +263,12 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Images\dao-tinh.jpg" />
+    <Content Include="Content\Images\hoanh-tao-hoang-vu.jpg" />
     <Content Include="Content\Images\kiem-dao-doc-ton.jpg" />
     <Content Include="Content\Images\lan_kha_ky_duyen.jpg" />
+    <Content Include="Content\Images\nang-dau-cuc-pham.jpg" />
     <Content Include="Content\Images\pham-nhan-tu-tien.jpg" />
+    <Content Include="Content\Images\vo-thuong-sat-than.jpg" />
     <Content Include="Content\Images\Vu_luyen_dien_phong.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />

@@ -6,7 +6,7 @@
     Layout = "~/Views/shared/_Layout.cshtml";
 }
 <div class="d-inline-block d-flex align-items-center justify-content-xxl-between">
-    <h2 class="d-inline-block">TRUYỆN</h2>
+    <h5 class="d-inline-block">TRUYỆN HOT <i class="fas fa-fire"></i></h5>
     <select onchange="if (this.value) window.location.href=this.value">
         <option value="">Chọn thể loại</option>
         @foreach (var genre in ViewBag.GenreID)
@@ -18,25 +18,20 @@
 <hr />
 <div class="container" id="story-list">
     <div class="row">
-        <div class="col-md-8">
-            <h2>Mới cập nhật</h2>
-            <div class="row">
-                @foreach (var story in Model)
-                {
-                    <div class="col-md-3 mb-5">
-                        <div class="bg-image position-relative">
-                            <a href="@Url.Action("Details", "Stories", new { id = story.StoryID })">
-                                <img src="@story.Img" class="img-fluid" />
-                            </a>
-                            <div class="position-absolute text-center" style="background-color: rgba(0, 0, 0, 0.4); bottom:0; right:0; left:0; max-width:220px">
-                                <a class="nav-link text-info fw-bold text-truncate" style="font-size:0.9rem"
-                                   href="@Url.Action("Details", "Stories", new { id = story.StoryID })">@story.Title</a>
-                            </div>
-                        </div>
+        @foreach (var story in Model)
+        {
+            <div class="col-md-2 mb-4">
+                <div class="bg-image position-relative">
+                    <a href="@Url.Action("Details", "Stories", new { id = story.StoryID })">
+                        <img src="@story.Img" class="img-fluid" />
+                    </a>
+                    <div class="position-absolute text-center" style="background-color: rgba(0, 0, 0, 0.4); bottom:0; right:0; left:0; max-width:220px">
+                        <a class="nav-link text-info fw-bold text-truncate" style="font-size:0.9rem"
+                           href="@Url.Action("Details", "Stories", new { id = story.StoryID })">@story.Title</a>
                     </div>
-                }
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 
