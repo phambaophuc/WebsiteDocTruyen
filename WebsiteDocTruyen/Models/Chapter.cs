@@ -15,7 +15,7 @@ namespace WebsiteDocTruyen.Models
         public string Title { get; set; }
         [Required]
         public string Content { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime TimeUpdate { get; set; }
         public int StoryID { get; set; }
         public virtual Story Story { get; set; }
     }

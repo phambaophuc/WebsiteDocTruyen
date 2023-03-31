@@ -3,16 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddDateTimeToChapter : DbMigration
+    public partial class AddTimeUpdateColumnToChapters : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Chapters", "DateTime", c => c.DateTime(nullable: false));
+            AddColumn("dbo.Chapters", "TimeUpdate", c => c.DateTime(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Chapters", "DateTime");
+            DropColumn("dbo.Chapters", "TimeUpdate");
         }
     }
 }

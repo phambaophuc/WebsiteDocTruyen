@@ -30,7 +30,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                    Title = model.Title,
                    Content = model.Content,
                    StoryID = story.StoryID,
-                   DateTime = DateTime.Now,
+                   TimeUpdate = DateTime.Now,
                 };
                 story.DateTime = DateTime.Now;
                 _dbContext.Chapters.Add(chapter);
@@ -62,6 +62,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                     Title = model.Title,
                     Content = model.Content,
                     StoryID = story.StoryID,
+                    TimeUpdate = DateTime.Now
                 };
                 _dbContext.Chapters.AddOrUpdate(chapter);
                 _dbContext.SaveChanges();

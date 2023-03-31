@@ -233,9 +233,9 @@
     <Compile Include="Migrations\202303311240510_AddDateTimeToStories.designer.cs">
       <DependentUpon>202303311240510_AddDateTimeToStories.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202303311256042_AddDateTimeToChapter.cs" />
-    <Compile Include="Migrations\202303311256042_AddDateTimeToChapter.designer.cs">
-      <DependentUpon>202303311256042_AddDateTimeToChapter.cs</DependentUpon>
+    <Compile Include="Migrations\202303311454500_AddTimeUpdateColumnToChapters.cs" />
+    <Compile Include="Migrations\202303311454500_AddTimeUpdateColumnToChapters.designer.cs">
+      <DependentUpon>202303311454500_AddTimeUpdateColumnToChapters.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -449,8 +449,8 @@
     <EmbeddedResource Include="Migrations\202303311240510_AddDateTimeToStories.resx">
       <DependentUpon>202303311240510_AddDateTimeToStories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202303311256042_AddDateTimeToChapter.resx">
-      <DependentUpon>202303311256042_AddDateTimeToChapter.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202303311454500_AddTimeUpdateColumnToChapters.resx">
+      <DependentUpon>202303311454500_AddTimeUpdateColumnToChapters.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

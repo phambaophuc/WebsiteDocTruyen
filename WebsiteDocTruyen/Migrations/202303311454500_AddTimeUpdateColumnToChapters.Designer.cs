@@ -7,13 +7,13 @@ namespace WebsiteDocTruyen.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddDateTimeToChapter : IMigrationMetadata
+    public sealed partial class AddTimeUpdateColumnToChapters : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDateTimeToChapter));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTimeUpdateColumnToChapters));
         
         string IMigrationMetadata.Id
         {
-            get { return "202303311256042_AddDateTimeToChapter"; }
+            get { return "202303311454500_AddTimeUpdateColumnToChapters"; }
         }
         
         string IMigrationMetadata.Source
