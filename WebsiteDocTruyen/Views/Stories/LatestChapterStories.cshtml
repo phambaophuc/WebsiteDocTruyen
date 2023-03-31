@@ -1,0 +1,31 @@
+﻿@model List<WebsiteDocTruyen.Models.Story>
+@using WebsiteDocTruyen.Helper
+@{
+    ViewBag.Title = "LatestChapterStories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .title-underline a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<h2>Truyện mới cập nhật</h2>
+
+<div style="font-size: 22px">
+    @foreach (var story in Model)
+    {
+        <div class="d-flex mb-4 title-underline">
+            <img src="@story.Img" alt="@story.Title" style="width:150px"/>
+            <div class="d-flex flex-column justify-content-center mx-4">
+                <a class="nav-link link-dark fw-bold"
+                   href="@Url.Action("Details", "Stories", new { id = story.StoryID })">@story.Title</a>
+                <p><span class="fw-bold">Tác giả:</span> @story.Author</p>
+                <p>Last updated: @story.DateTime.ToRelativeDateString()</p>
+            </div>
+        </div>
+    }
+</div>
+
+

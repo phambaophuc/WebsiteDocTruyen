@@ -59,6 +59,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                 Author = viewModel.Author,
                 Description = viewModel.Description,
                 Img = viewModel.Img,
+                DateTime = DateTime.Now,
                 Genres = new List<Genre>()
             };
 

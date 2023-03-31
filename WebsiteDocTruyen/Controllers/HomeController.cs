@@ -45,13 +45,6 @@ namespace WebsiteDocTruyen.Controllers
             return View(stories.ToList().ToPagedList(pageNum, pageSize));
         }
 
-        public ActionResult Search(string searchString)
-        {
-            var stories = _dbContext.Stories.ToList();
-            var searchResults = stories.Where(s => s.Title.StartsWith(searchString)).ToList();
-            return Json(searchResults, JsonRequestBehavior.AllowGet);
-        }
-
         // Phương thức đọc truyện
         public ActionResult Read(int storyId, int chapterId)
         {

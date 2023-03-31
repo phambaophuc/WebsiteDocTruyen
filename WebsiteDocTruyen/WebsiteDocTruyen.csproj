@@ -208,6 +208,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DateTimeExtensions.cs" />
     <Compile Include="Migrations\202303120453239_InitialModel.cs" />
     <Compile Include="Migrations\202303120453239_InitialModel.designer.cs">
       <DependentUpon>202303120453239_InitialModel.cs</DependentUpon>
@@ -227,6 +228,14 @@
     <Compile Include="Migrations\202303250243299_AddNameColumnToApplicationUser.cs" />
     <Compile Include="Migrations\202303250243299_AddNameColumnToApplicationUser.designer.cs">
       <DependentUpon>202303250243299_AddNameColumnToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303311240510_AddDateTimeToStories.cs" />
+    <Compile Include="Migrations\202303311240510_AddDateTimeToStories.designer.cs">
+      <DependentUpon>202303311240510_AddDateTimeToStories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303311256042_AddDateTimeToChapter.cs" />
+    <Compile Include="Migrations\202303311256042_AddDateTimeToChapter.designer.cs">
+      <DependentUpon>202303311256042_AddDateTimeToChapter.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -389,6 +398,7 @@
     <Content Include="Views\Stories\Details.cshtml" />
     <Content Include="Views\Stories\ChapterOfStory.cshtml" />
     <Content Include="Views\History\ReadingHistory.cshtml" />
+    <Content Include="Views\Stories\LatestChapterStories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -435,6 +445,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303250243299_AddNameColumnToApplicationUser.resx">
       <DependentUpon>202303250243299_AddNameColumnToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303311240510_AddDateTimeToStories.resx">
+      <DependentUpon>202303311240510_AddDateTimeToStories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303311256042_AddDateTimeToChapter.resx">
+      <DependentUpon>202303311256042_AddDateTimeToChapter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

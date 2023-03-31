@@ -30,7 +30,9 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                    Title = model.Title,
                    Content = model.Content,
                    StoryID = story.StoryID,
+                   DateTime = DateTime.Now,
                 };
+                story.DateTime = DateTime.Now;
                 _dbContext.Chapters.Add(chapter);
                 _dbContext.SaveChanges();
                 return RedirectToAction("Index", "Stories");

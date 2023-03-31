@@ -15,6 +15,18 @@ namespace WebsiteDocTruyen.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
+
+        // Hiển thị truyện có chapter mới nhất
+        public ActionResult LatestChapterStories()
+        {
+            var latestChapterStories = _dbContext.Stories
+                .OrderByDescending(s => s.Chapters.Max(c => c.DateTime))
+                .ToList();
+
+            return View(latestChapterStories);
+        }
+
+        // Thông tin truyện
         public ActionResult Details(int id)
         {
             var story = _dbContext.Stories.Include(s => s.Genres).FirstOrDefault(s => s.StoryID == id);
@@ -26,5 +38,6 @@ namespace WebsiteDocTruyen.Controllers
 
             return View(story);
         }
+
     }
 }
