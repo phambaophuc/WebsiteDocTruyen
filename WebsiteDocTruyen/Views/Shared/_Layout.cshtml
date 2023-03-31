@@ -21,43 +21,49 @@
             background-repeat: repeat;
             color: rgba(255,255,255,.6);
         }
+        .font-body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
     </style>
 
 </head>
-<body class="position-relative">
+<body class="font-body">
     <nav class="navbar navbar-expand-sm navbar-light" id="neubar">
         <div class="container">
             @if (User.IsInRole("Admin"))
             {
                 <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "Admin" })"><i class="fa-sharp fa-solid fa-right-from-bracket"></i> Về trang Admin</a>
             }
+
             <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })"><i class="fas fa-book-open"></i> TRUYỆN</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             @using (Html.BeginForm("Index", "Home", new { area = "" }, FormMethod.Get, new { @class = "form-inline" }))
             {
-                <div class="input-group rounded">
-                    <input type="text" name="searchString" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <i class="fas fa-search"></i>
-                    </span>
+                <div class="input-group">
+                    <input type="search" name="searchString" class="form-control-sm" placeholder="Nhập tên truyện" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="submit" class="btn btn-outline-dark">Tìm kiếm</button>
                 </div>
             }
+
             <div class=" collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav ms-auto ">
                     <div class="nav-item">
-                        <a class="nav-link mx-2" href="#"><i class="fa-sharp fa-solid fa-list"></i> Danh sách</a>
+                        <a class="nav-link mx-2 text-truncate" href="#"><i class="fa-sharp fa-solid fa-list"></i> Danh sách</a>
                     </div>
+
                     <div class="nav-item">
-                        <a class="nav-link mx-2" aria-current="page" href="https://truyenqqmoi.com/" target="_blank">
+                        <a class="nav-link mx-2 text-truncate" aria-current="page" href="https://truyenqqmoi.com/" target="_blank">
                             <i class="fas fa-book"></i>
                             Truyện tranh
                         </a>
                     </div>
+
                     <div class="navbar-nav ms-auto d-none d-lg-inline-flex">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link mx-5 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="dropdown">
+                            <a class="nav-link mx-2 dropdown-toggle text-truncate" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-sharp fa-solid fa-gear"></i> Tuỳ chỉnh
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -68,6 +74,7 @@
                             </div>
                         </div>
                     </div>
+
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>
