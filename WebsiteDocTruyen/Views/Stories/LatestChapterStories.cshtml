@@ -13,7 +13,7 @@
 
 <h2>Truyện mới cập nhật</h2>
 
-<div style="font-size: 22px">
+<div style="font-size: 20px">
     @foreach (var story in Model)
     {
         <div class="d-flex mb-4 title-underline">
@@ -21,8 +21,16 @@
             <div class="d-flex flex-column justify-content-center mx-4">
                 <a class="nav-link link-dark fw-bold"
                    href="@Url.Action("Details", "Stories", new { id = story.StoryID })">@story.Title</a>
-                <p><span class="fw-bold">Tác giả:</span> @story.Author</p>
-                <p>Last updated: @story.DateTime.ToRelativeDateString()</p>
+                <p><span>Tác giả:</span> @story.Author</p>
+                @if (story.Chapters.Any())
+                {
+                    <p>
+                        Thời gian cập nhật: @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().TimeUpdate.ToRelativeDateString()
+                    </p>
+                    <p class="text-primary">
+                        @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().Title
+                    </p>
+                }
             </div>
         </div>
     }

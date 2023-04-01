@@ -28,3 +28,5 @@
     @Html.ActionLink("Sửa chương", "Edit", "Chapters", new { id = Model.StoryID }, new { @class = "btn btn-outline-secondary" })
     <h5 style="color:forestgreen; margin-top: 5px">Số chương hiện tại: @ViewBag.ChapterCount</h5>
 </div>
+<hr />
+@Html.Partial("ListChapter")

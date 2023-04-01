@@ -1,21 +1,66 @@
 ﻿@model WebsiteDocTruyen.Models.Story
 
+<style>
+    .chapter-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .chapter-column {
+        width: 50%;
+        box-sizing: border-box;
+        padding: 0 10px;
+    }
+</style>
+
 <h2>Chương</h2>
 
-<ul>
-    @foreach (var chapter in Model.Chapters)
-    {
-        <li class="d-flex">
-            <a class="p-2 link-secondary text-decoration-none" href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">@chapter.Title</a>
-            @if (User.IsInRole("Admin"))
-            {
-                <span onclick="return confirm('Bạn có muốn xoá chương @chapter.Title')">
-                    @Html.ActionLink("Xoá", "DeleteChapter", "Chapters", new { chapterId = chapter.ChapterID }, new { @class = "nav-link link-danger ml-auto p-2" })
-                </span>
-            }
-        </li>
-    }
-</ul>
+<div class="chapter-list">
+    <div class="chapter-column">
+        @foreach (var chapter in Model.Chapters.Take(25))
+        {
+            <div class="d-flex">
+                @*kiểm tra xem chương có được cập nhật trong vòng 1 ngày hay không*@
+                @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0)))
+                {
+                    <a class="p-2 link-success text-decoration-none"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                        @chapter.Title
+                    </a>
+                }
+                else
+                {
+                    <a class="p-2 link-secondary text-decoration-none"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                        @chapter.Title
+                    </a>
+                }
+            </div>
+        }
+    </div>
+    <div class="chapter-column">
+        @foreach (var chapter in Model.Chapters.Skip(25))
+        {
+            <div class="d-flex">
+                @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0)))
+                {
+                    <a class="p-2 link-success text-decoration-none"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                        @chapter.Title
+                    </a>
+                }
+                else
+                {
+                    <a class="p-2 link-secondary text-decoration-none"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                        @chapter.Title
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</div>
+
 
 
 

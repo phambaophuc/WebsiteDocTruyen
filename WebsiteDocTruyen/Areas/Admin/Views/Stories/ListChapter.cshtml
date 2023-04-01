@@ -1,0 +1,19 @@
+﻿@model WebsiteDocTruyen.Models.Story
+
+<ul>
+    @foreach (var chapter in Model.Chapters)
+    {
+        <li class="d-flex">
+            <a class="p-2 link-secondary text-decoration-none" 
+                href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                @chapter.Title
+            </a>
+            @if (User.IsInRole("Admin"))
+            {
+                <span onclick="return confirm('Bạn có muốn xoá chương @chapter.Title')">
+                    @Html.ActionLink("Xoá", "DeleteChapter", "Chapters", new { chapterId = chapter.ChapterID }, new { @class = "nav-link link-danger ms-2 p-2" })
+                </span>
+            }
+        </li>
+    }
+</ul>

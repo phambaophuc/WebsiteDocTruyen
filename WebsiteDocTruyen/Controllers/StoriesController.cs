@@ -20,6 +20,7 @@ namespace WebsiteDocTruyen.Controllers
         public ActionResult LatestChapterStories()
         {
             var latestChapterStories = _dbContext.Stories
+                .Where(s => s.Chapters.Any())
                 .OrderByDescending(s => s.Chapters.Max(c => c.TimeUpdate))
                 .ToList();
 

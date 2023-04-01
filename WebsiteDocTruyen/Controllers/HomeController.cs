@@ -29,7 +29,7 @@ namespace WebsiteDocTruyen.Controllers
 
             ViewBag.Keyword = searchString;
 
-            var stories = _dbContext.Stories.Include(s => s.Genres);
+            var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
 
             if (!String.IsNullOrEmpty(searchString))
             {
