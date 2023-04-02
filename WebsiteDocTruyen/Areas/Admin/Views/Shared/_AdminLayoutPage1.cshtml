@@ -24,7 +24,17 @@
                         <span class="fs-5 d-none d-sm-inline">ADMIN PAGE</span>
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                        <li class="nav-item">
+
+                        @using (Html.BeginForm("Index", "Stories", new { area = "Admin" }, FormMethod.Get, new { @class = "form-inline" }))
+                        {
+                            <li class="input-group nav-item mb-2">
+                                <input type="search" name="searchString" class="form-control-sm" placeholder="Nhập tên truyện"
+                                       aria-label="Search" aria-describedby="search-addon" onkeyup="search()" />
+                                <button type="submit" class="btn btn-sm btn-success">Tìm kiếm</button>
+                            </li>
+                        }
+
+                        <li>
                             <a href="@Url.Action("Index", "Stories", new { area = "Admin" })" class="nav-link align-middle px-0">
                                 <i class="fa-sharp fa-solid fa-book"></i> <span class="ms-1 d-none d-sm-inline"> Truyện</span>
                             </a>

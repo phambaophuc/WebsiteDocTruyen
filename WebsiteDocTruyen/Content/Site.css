@@ -119,3 +119,15 @@ a.navbar-brand {
     -o-animation: my 700ms infinite;
     animation: my 700ms infinite;
 }
+
+/* Chỉnh ảnh */
+.book-img {
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.book-details {
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    transform: perspective(900px) rotateY(-10deg);
+}

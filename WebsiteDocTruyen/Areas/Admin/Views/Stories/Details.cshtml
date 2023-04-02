@@ -8,16 +8,16 @@
 <hr class="col-2" />
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             @Html.ActionLink("Sửa truyện", "Edit", "Stories", new { id = Model.StoryID }, new { @class = "btn btn-primary" })
             <span onclick="return confirm('Bạn có muốn xoá truyện này?')">
                 <a href="@Url.Action("Delete", "Stories", new { id = Model.StoryID })" class="btn btn-danger">Xoá truyện</a>
             </span>
-            <img class="rounded-end" src="@Model.Img" alt="Alternate Text" style="display:block; margin:8px 0" />
-            <p>Tác giả: <span class="text-nowrap">@Model.Author</span></p>
-            <p>Thể loại: <span>@String.Join(", ", Model.Genres.Select(g => g.Name))</span></p>
+            <img class="rounded-end book-details mt-4 mb-3" src="@Model.Img" alt="Alternate Text" style="display:block; margin:8px 0" />
+            <p><span class="fw-bold">Tác giả:</span> @Model.Author</p>
+            <p><span class="fw-bold">Thể loại:</span> @String.Join(", ", Model.Genres.Select(g => g.Name))</p>
         </div>
-        <div class="col-7">
+        <div class="col-md-7">
             <h3 class="text-center text-uppercase">@Model.Title</h3>
             <hr />
             @Html.Raw(new MarkdownSharp.Markdown().Transform(Model.Description))

@@ -33,6 +33,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                    TimeUpdate = DateTime.Now,
                 };
                 story.DateTime = DateTime.Now;
+                story.ChapterNumber += 1;
                 _dbContext.Chapters.Add(chapter);
                 _dbContext.SaveChanges();
                 return RedirectToAction("Index", "Stories");
@@ -83,12 +84,15 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-            int story = chapter.StoryID;
+            int storyChapter = chapter.StoryID;
+
+            var story = _dbContext.Stories.Where(s => s.StoryID == storyChapter).FirstOrDefault();
+            story.ChapterNumber -= 1;
 
             _dbContext.Chapters.Remove(chapter);
             _dbContext.SaveChanges();
 
-            return RedirectToAction("Details", "Stories", new { id = story });
+            return RedirectToAction("Details", "Stories", new { id = storyChapter });
         }
     }
 }

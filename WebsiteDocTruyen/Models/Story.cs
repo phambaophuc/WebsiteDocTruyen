@@ -15,6 +15,7 @@ namespace WebsiteDocTruyen.Models
         public string Author { get; set; }
         public string Description { get; set; }
         public string Img { get; set; }
+        public int ChapterNumber { get; set; }
         public DateTime DateTime { get; set; }
         public virtual ICollection<Chapter> Chapters { get; set; }
         public virtual ICollection<Genre> Genres { get; set; }

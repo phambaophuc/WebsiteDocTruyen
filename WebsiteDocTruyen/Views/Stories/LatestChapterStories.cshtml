@@ -18,7 +18,7 @@
         @foreach (var story in Model)
         {
             <div class="d-flex mb-4 title-underline">
-                <img src="@story.Img" alt="@story.Title" style="width:150px" />
+                <img class="book-img" src="@story.Img" alt="@story.Title" style="width:140px;" />
                 <div class="d-flex flex-column justify-content-center mx-4">
                     <a class="nav-link link-dark fw-bold"
                        href="@Url.Action("Details", "Stories", new { id = story.StoryID })"><i class="fa-solid fa-book-open-reader"></i> @story.Title</a>

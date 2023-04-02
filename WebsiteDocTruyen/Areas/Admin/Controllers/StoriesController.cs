@@ -28,7 +28,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            int chapterCount = _dbContext.Chapters.Count(c => c.StoryID == id);
+            int chapterCount = story.ChapterNumber;
 
             ViewBag.ChapterCount = chapterCount;
 
@@ -59,6 +59,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                 Author = viewModel.Author,
                 Description = viewModel.Description,
                 Img = viewModel.Img,
+                ChapterNumber = 0,
                 DateTime = DateTime.Now,
                 Genres = new List<Genre>()
             };
@@ -92,12 +93,6 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
 
             ViewBag.GenreID = new SelectList(_dbContext.Genres, "GenreID", "Name");
             return View(stories.ToList());
-        }
-
-        public ActionResult Search(string searchString)
-        {
-            var stories = _dbContext.Stories.Where(s => s.Title.Contains(searchString)).ToList();
-            return View(stories);
         }
 
         public ActionResult Edit(int id)
