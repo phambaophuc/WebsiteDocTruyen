@@ -4,47 +4,54 @@
     Layout = "/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
 }
 
-<h2>Thêm truyện</h2>
-
-@using (Html.BeginForm("Create", "Stories", new { area = "Admin" }))
+@if (!User.IsInRole("Admin"))
 {
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        <strong>Tên truyện</strong>
-        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Title)
-    </div>
+    <h2 class="text-danger text-center">Bạn không có quyền sử dụng chức năng này</h2>
+}
+else
+{
+    <h2>Thêm truyện</h2>
 
-    <div class="form-group">
-        <strong>Tác giả</strong>
-        @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Author)
-    </div>
-
-    <div class="form-group">
-        <strong>Giới thiệu</strong>
-        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Description)
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-            <strong style="display: inline-block">Hình ảnh</strong>
-            @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
-            <input type="button" id="btnUpload" value="Chọn hình ảnh" class="btn btn-success" style="margin-top:4px" />
-            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
-                   style="display:none;" />
-            <img src="" id="pictureUpload" style="display: block; margin-top: 5px" />
-            @Html.ValidationMessageFor(model => model.Img)
+    using (Html.BeginForm("Create", "Stories", new { area = "Admin" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <strong>Tên truyện</strong>
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Title)
         </div>
-    </div>
 
-    <div class="form-group">
-        <strong>Chọn thể loại</strong>
-        @Html.ListBoxFor(model => model.SelectedGenres, new SelectList(Model.Genres, "GenreID", "Name", Model.SelectedGenres), new { @class = "form-control", multiple = "multiple" })
-    </div>
+        <div class="form-group">
+            <strong>Tác giả</strong>
+            @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Author)
+        </div>
 
-    <button type="submit" class="btn btn-primary" style="margin-top: 4px">Thêm</button>
+        <div class="form-group">
+            <strong>Giới thiệu</strong>
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <strong style="display: inline-block">Hình ảnh</strong>
+                @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="button" id="btnUpload" value="Chọn hình ảnh" class="btn btn-success" style="margin-top:4px" />
+                <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                       style="display:none;" />
+                <img src="" id="pictureUpload" style="display: block; margin-top: 5px" />
+                @Html.ValidationMessageFor(model => model.Img)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <strong>Chọn thể loại</strong>
+            @Html.ListBoxFor(model => model.SelectedGenres, new SelectList(Model.Genres, "GenreID", "Name", Model.SelectedGenres), new { @class = "form-control", multiple = "multiple" })
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 4px">Thêm</button>
+    }
 }
 
 @section upload

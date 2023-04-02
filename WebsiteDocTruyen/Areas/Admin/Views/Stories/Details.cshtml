@@ -9,14 +9,18 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-            @Html.ActionLink("Sửa truyện", "Edit", "Stories", new { id = Model.StoryID }, new { @class = "btn btn-primary" })
-            <span onclick="return confirm('Bạn có muốn xoá truyện này?')">
-                <a href="@Url.Action("Delete", "Stories", new { id = Model.StoryID })" class="btn btn-danger">Xoá truyện</a>
-            </span>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Sửa truyện", "Edit", "Stories", new { id = Model.StoryID }, new { @class = "btn btn-primary" })
+                <span onclick="return confirm('Bạn có muốn xoá truyện này?')">
+                    <a href="@Url.Action("Delete", "Stories", new { id = Model.StoryID })" class="btn btn-danger">Xoá truyện</a>
+                </span>
+            }
             <img class="rounded-end book-details mt-4 mb-3" src="@Model.Img" alt="Alternate Text" style="display:block; margin:8px 0" />
             <p><span class="fw-bold">Tác giả:</span> @Model.Author</p>
             <p><span class="fw-bold">Thể loại:</span> @String.Join(", ", Model.Genres.Select(g => g.Name))</p>
         </div>
+
         <div class="col-md-7">
             <h3 class="text-center text-uppercase">@Model.Title</h3>
             <hr />
@@ -24,8 +28,11 @@
         </div>
     </div>
     <hr class="col-1" />
-    @Html.ActionLink("Thêm chương", "Create", "Chapters", new { id = Model.StoryID }, new { @class = "btn btn-success" })
-    @Html.ActionLink("Sửa chương", "Edit", "Chapters", new { id = Model.StoryID }, new { @class = "btn btn-outline-secondary" })
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Thêm chương", "Create", "Chapters", new { id = Model.StoryID }, new { @class = "btn btn-outline-success me-1" })
+        @Html.ActionLink("Sửa chương", "Edit", "Chapters", new { id = Model.StoryID }, new { @class = "btn btn-outline-secondary" })
+    }
     <h5 style="color:forestgreen; margin-top: 5px">Số chương hiện tại: @ViewBag.ChapterCount</h5>
 </div>
 <hr />
