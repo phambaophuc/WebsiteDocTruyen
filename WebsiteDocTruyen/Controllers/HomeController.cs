@@ -21,20 +21,14 @@ namespace WebsiteDocTruyen.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
-        public ActionResult Index(int? page, string searchString, int genreID = 0)
+        public ActionResult Index(int? page, int genreID = 0)
         {
             if (page == null) page = 1;
             int pageSize = 12;
             int pageNum = page ?? 1;
 
-            ViewBag.Keyword = searchString;
-
             var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                stories = stories.Where(s => s.Title.Contains(searchString));
-            }
             if (genreID != 0)
             {
                 stories = stories.Where(s => s.Genres.Any(x => x.GenreID == genreID));
@@ -43,6 +37,21 @@ namespace WebsiteDocTruyen.Controllers
             ViewBag.GenreID = new SelectList(_dbContext.Genres, "GenreID", "Name");
 
             return View(stories.ToList().ToPagedList(pageNum, pageSize));
+        }
+
+        // Chức năng tìm truyện theo tên
+        public ActionResult SearchStory(string searchString)
+        {
+            var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stories = stories.Where(s => s.Title.Contains(searchString));
+            }
+
+            ViewBag.Result = searchString;
+
+            return View(stories.ToList());
         }
 
         // Phương thức đọc truyện
