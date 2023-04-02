@@ -56,3 +56,66 @@ a.navbar-brand {
     color: #454545
 }
 /* End - My Style */
+
+@-webkit-keyframes my {
+    0% {
+        color: #32CD32;
+    }
+
+    50% {
+        color: #6c757d;
+    }
+
+    100% {
+        color: #32CD32;
+    }
+}
+
+@-moz-keyframes my {
+    0% {
+        color: #32CD32;
+    }
+
+    50% {
+        color: #6c757d;
+    }
+
+    100% {
+        color: #32CD32;
+    }
+}
+
+@-o-keyframes my {
+    0% {
+        color: #32CD32;
+    }
+
+    50% {
+        color: #6c757d;
+    }
+
+    100% {
+        color: #32CD32;
+    }
+}
+
+@keyframes my {
+    0% {
+        color: #32CD32;
+    }
+
+    50% {
+        color: #6c757d;
+    }
+
+    100% {
+        color: #32CD32;
+    }
+}
+
+.nhap-nhay {
+    -webkit-animation: my 700ms infinite;
+    -moz-animation: my 700ms infinite;
+    -o-animation: my 700ms infinite;
+    animation: my 700ms infinite;
+}

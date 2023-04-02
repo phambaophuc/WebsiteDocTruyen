@@ -11,29 +11,29 @@
     }
 </style>
 
-<h2>Truyện mới cập nhật</h2>
-
-<div style="font-size: 20px">
-    @foreach (var story in Model)
-    {
-        <div class="d-flex mb-4 title-underline">
-            <img src="@story.Img" alt="@story.Title" style="width:150px"/>
-            <div class="d-flex flex-column justify-content-center mx-4">
-                <a class="nav-link link-dark fw-bold"
-                   href="@Url.Action("Details", "Stories", new { id = story.StoryID })">@story.Title</a>
-                <p><span>Tác giả:</span> @story.Author</p>
-                @if (story.Chapters.Any())
-                {
-                    <p>
-                        Thời gian cập nhật: @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().TimeUpdate.ToRelativeDateString()
-                    </p>
-                    <p class="text-primary">
-                        @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().Title
-                    </p>
-                }
+<div>
+    <h2>Truyện mới cập nhật</h2>
+    <hr class="col-3 mb-4" />
+    <div style="font-size: 20px">
+        @foreach (var story in Model)
+        {
+            <div class="d-flex mb-4 title-underline">
+                <img src="@story.Img" alt="@story.Title" style="width:150px" />
+                <div class="d-flex flex-column justify-content-center mx-4">
+                    <a class="nav-link link-dark fw-bold"
+                       href="@Url.Action("Details", "Stories", new { id = story.StoryID })"><i class="fa-solid fa-book-open-reader"></i> @story.Title</a>
+                    <p><i class="fa-solid fa-pen"></i> <span>Tác giả:</span> @story.Author</p>
+                    @if (story.Chapters.Any())
+                    {
+                        <p class="mb-0">
+                            Thời gian cập nhật: @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().TimeUpdate.ToRelativeDateString()
+                        </p>
+                        <p class="text-primary">
+                            @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().Title
+                        </p>
+                    }
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
-
-

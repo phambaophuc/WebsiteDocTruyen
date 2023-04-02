@@ -13,8 +13,8 @@
     }
 </style>
 
-<h2>Chương</h2>
-
+<h2 class="text-uppercase mt-5">Danh sách chương</h2>
+<hr class="col-3"/>
 <div class="chapter-list">
     <div class="chapter-column">
         @foreach (var chapter in Model.Chapters.Take(25))
@@ -23,15 +23,18 @@
                 @*kiểm tra xem chương có được cập nhật trong vòng 1 ngày hay không*@
                 @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0)))
                 {
-                    <a class="p-2 link-success text-decoration-none"
-                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                    <a class="nav-link p-2"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">
+                        <i class="fa-sharp fa-solid fa-certificate"></i>
                         @chapter.Title
+                        <span class="nhap-nhay"> (mới cập nhật)</span>
                     </a>
                 }
                 else
                 {
-                    <a class="p-2 link-secondary text-decoration-none"
-                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                    <a class="p-2 nav-link"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">
+                        <i class="fa-sharp fa-solid fa-certificate"></i>
                         @chapter.Title
                     </a>
                 }
@@ -44,15 +47,18 @@
             <div class="d-flex">
                 @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0)))
                 {
-                    <a class="p-2 link-success text-decoration-none"
-                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                    <a class="nav-link p-2"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">
+                        <i class="fa-sharp fa-solid fa-certificate"></i>
                         @chapter.Title
+                        <span class="nhap-nhay"> (mới cập nhật)</span>
                     </a>
                 }
                 else
                 {
-                    <a class="p-2 link-secondary text-decoration-none"
-                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
+                    <a class="p-2 nav-link"
+                       href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">
+                        <i class="fa-sharp fa-solid fa-certificate"></i>
                         @chapter.Title
                     </a>
                 }

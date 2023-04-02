@@ -26,22 +26,6 @@ namespace WebsiteDocTruyen.Controllers
             }
             return View(story);
         }
-        public ActionResult DeleteChapter(int chapterId)
-        {
-            var chapter = _dbContext.Chapters.Find(chapterId);
-
-            if (chapter == null)
-            {
-                return HttpNotFound();
-            }
-
-            int story = chapter.StoryID;
-
-            _dbContext.Chapters.Remove(chapter);
-            _dbContext.SaveChanges();
-
-            return RedirectToAction("Details", "Stories", new { id = story });
-        }
 
     }
 }

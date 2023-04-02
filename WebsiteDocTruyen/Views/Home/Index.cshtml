@@ -6,7 +6,7 @@
     Layout = "~/Views/shared/_Layout.cshtml";
 }
 <div class="d-inline-block d-flex align-items-center justify-content-xxl-between">
-    <h5 class="d-inline-block">TRUYỆN HOT <i class="fas fa-fire"></i></h5>
+    <h5 class="d-inline-block">TRUYỆN CHỮ</h5>
     <select onchange="if (this.value) window.location.href=this.value">
         <option value="">Chọn thể loại</option>
         @foreach (var genre in ViewBag.GenreID)
@@ -16,7 +16,7 @@
     </select>
 </div>
 <hr />
-<div class="container" id="story-list">
+<div class="container mb-4" id="story-list">
     <div class="row">
         @foreach (var story in Model)
         {
@@ -36,7 +36,7 @@
 </div>
 
 <div>
-    <div>
+    <div class="mb-2">
         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
         @Model.PageCount
     </div>

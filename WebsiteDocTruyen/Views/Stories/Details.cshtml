@@ -8,20 +8,19 @@
 <hr class="col-2" />
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <img class="rounded-end" src="@Model.Img" alt="Alternate Text" style="display:block; margin-bottom:8px" />
-            <p>Tác giả: <span class="text-nowrap">@Model.Author</span></p>
-            <p>Thể loại: <span>@String.Join(", ", Model.Genres.Select(g => g.Name))</span></p>
+            <p class="mt-3 mb-1">
+                <span class="fw-bold">Tác giả:</span> @Model.Author</p>
+            <p>
+                <span class="fw-bold">Thể loại:</span> @String.Join(", ", Model.Genres.Select(g => g.Name))</p>
         </div>
-        <div class="col-7">
+        <div class="col-md-7">
             <h3 class="text-center text-uppercase">@Model.Title</h3>
             <hr />
             @Html.Raw(new MarkdownSharp.Markdown().Transform(Model.Description))
         </div>
     </div>
 </div>
-
-<hr />
-
 @Html.Partial("ChapterOfStory")
 

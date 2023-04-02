@@ -4,7 +4,7 @@
     @foreach (var chapter in Model.Chapters)
     {
         <li class="d-flex">
-            <a class="p-2 link-secondary text-decoration-none" 
+            <a class="p-2 nav-link" 
                 href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID, area = "" })">
                 @chapter.Title
             </a>

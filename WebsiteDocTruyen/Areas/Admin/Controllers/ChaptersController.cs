@@ -72,5 +72,23 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             model.Story = _dbContext.Stories.ToList();
             return View(model);
         }
+
+        // Xoá chapter
+        public ActionResult DeleteChapter(int chapterId)
+        {
+            var chapter = _dbContext.Chapters.Find(chapterId);
+
+            if (chapter == null)
+            {
+                return HttpNotFound();
+            }
+
+            int story = chapter.StoryID;
+
+            _dbContext.Chapters.Remove(chapter);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Details", "Stories", new { id = story });
+        }
     }
 }
