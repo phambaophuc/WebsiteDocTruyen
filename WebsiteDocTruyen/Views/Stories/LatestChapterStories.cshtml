@@ -25,12 +25,13 @@
                     <p><i class="fa-solid fa-pen"></i> <span>Tác giả:</span> @story.Author</p>
                     @if (story.Chapters.Any())
                     {
+                        var chapterID = story.Chapters.OrderByDescending(c => c.TimeUpdate).First().ChapterID;
                         <p class="mb-0">
                             Thời gian cập nhật: @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().TimeUpdate.ToRelativeDateString()
                         </p>
-                        <p class="text-primary">
+                        <a class="nav-link link-primary" href="@Url.Action("Read", "Home", new { storyId = story.StoryID, chapterId = chapterID })">
                             @story.Chapters.OrderByDescending(c => c.TimeUpdate).First().Title
-                        </p>
+                        </a>
                     }
                 </div>
             </div>
