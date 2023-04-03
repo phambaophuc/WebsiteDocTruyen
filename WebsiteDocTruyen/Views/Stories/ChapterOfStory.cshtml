@@ -20,8 +20,8 @@
         @foreach (var chapter in Model.Chapters.Take(25))
         {
             <div class="d-flex">
-                @*kiểm tra xem chương có được cập nhật trong vòng 1 ngày hay không*@
-                @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0)))
+                @*kiểm tra xem chương có được cập nhật trong vòng 1 tiếng hay không*@
+                @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(0, 1, 0, 0)))
                 {
                     <a class="nav-link p-2"
                        href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">
@@ -45,7 +45,7 @@
         @foreach (var chapter in Model.Chapters.Skip(25))
         {
             <div class="d-flex">
-                @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0)))
+                @if (chapter.TimeUpdate >= DateTime.Now.Subtract(new TimeSpan(0, 1, 0, 0)))
                 {
                     <a class="nav-link p-2"
                        href="@Url.Action("Read", "Home", new { storyId = Model.StoryID, chapterId = chapter.ChapterID })">
