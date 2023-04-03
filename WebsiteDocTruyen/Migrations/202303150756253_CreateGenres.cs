@@ -17,8 +17,11 @@
             Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (8, N'Huyền huyễn')");
             Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (9, N'Lịch sử')");
             Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (10, N'Cổ đại')");
+            Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (11, N'Mạt thế')");
+            Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (12, N'Thám hiểm')");
+            Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (13, N'Văn học Việt')");
         }
-        
+
         public override void Down()
         {
         }
