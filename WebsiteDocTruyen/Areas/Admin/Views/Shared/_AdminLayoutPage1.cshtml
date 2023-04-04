@@ -27,10 +27,12 @@
 
                         @using (Html.BeginForm("Index", "Stories", new { area = "Admin" }, FormMethod.Get, new { @class = "form-inline" }))
                         {
-                            <li class="input-group nav-item mb-2">
-                                <input type="search" name="searchString" class="form-control-sm" placeholder="Nhập tên truyện"
+                            <li class="input-group nav-item mb-2 position-relative">
+                                <input type="search" name="searchString" class="form-control-sm" placeholder="Nhập tên truyện" style="padding-right: 1.8rem"
                                        aria-label="Search" aria-describedby="search-addon" onkeyup="search()" />
-                                <button type="submit" class="btn btn-sm btn-success">Tìm kiếm</button>
+                                <button type="submit" class="position-absolute end-0" style="background-color: transparent; border-color: transparent">
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </li>
                         }
 
@@ -57,27 +59,27 @@
                                 <i class="fa-sharp fa-solid fa-right-to-bracket"></i> <span class="ms-1 d-none d-sm-inline"> Về trang chủ</span>
                             </a>
                         </li>
-                    </ul>
-                    <hr>
-                    <div class="pb-4">
-                        @if (Request.IsAuthenticated)
-                        {
-                            using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+
+                        <li class="mt-4">
+                            @if (Request.IsAuthenticated)
                             {
-                                @Html.AntiForgeryToken()
-                                <a class="nav-link mx-2 link-danger"
-                                    href="javascript:document.getElementById('logoutForm').submit()">
-                                    <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+                                using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a class="nav-link px-0 align-middle link-danger"
+                                       href="javascript:document.getElementById('logoutForm').submit()">
+                                        <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <a class="nav-link px-0 align-middle link-danger" href="@Url.Action("Login", "Account", new { area = "" })">
+                                    <i class="fa-sharp fa-solid fa-share"></i> Đăng nhập
                                 </a>
                             }
-                        }
-                        else
-                        {
-                            <a class="nav-link" href="@Url.Action("Login", "Account", new { area = "" })">
-                                <i class="fa-sharp fa-solid fa-share"></i> Đăng nhập
-                            </a>
-                        }
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col py-3">

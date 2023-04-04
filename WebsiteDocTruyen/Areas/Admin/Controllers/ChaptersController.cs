@@ -36,7 +36,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                 story.ChapterNumber += 1;
                 _dbContext.Chapters.Add(chapter);
                 _dbContext.SaveChanges();
-                return RedirectToAction("Index", "Stories");
+                return RedirectToAction("Details", "Stories", new { id = story.StoryID });
             }
 
             model.Story = _dbContext.Stories.ToList();
@@ -53,8 +53,8 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             SelectList ListChapter = new SelectList(Chapter, "ChapterID", "Title");
             // Set vào ViewBag
             ViewBag.ChapterList = ListChapter;
+            ViewBag.StoryTitle = story.Title;
 
-            ViewBag.ChapterTittle = story.Title;
             if (ModelState.IsValid)
             {
                 var chapter = new Chapter
@@ -67,7 +67,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                 };
                 _dbContext.Chapters.AddOrUpdate(chapter);
                 _dbContext.SaveChanges();
-                return RedirectToAction("Index", "Stories");
+                return RedirectToAction("Details", "Stories", new { id = story.StoryID });
             }
 
             model.Story = _dbContext.Stories.ToList();

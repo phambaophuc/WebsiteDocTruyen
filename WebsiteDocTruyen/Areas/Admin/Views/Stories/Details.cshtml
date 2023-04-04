@@ -27,7 +27,7 @@
             @Html.Raw(new MarkdownSharp.Markdown().Transform(Model.Description))
         </div>
     </div>
-    <hr class="col-1" />
+    <hr class="col-2" />
     @if (User.IsInRole("Admin"))
     {
         @Html.ActionLink("Thêm chương", "Create", "Chapters", new { id = Model.StoryID }, new { @class = "btn btn-sm btn-outline-success me-1" })

@@ -4,13 +4,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
 }
 
-<h3>Thêm chương cho truyện <span class="text-uppercase">"@ViewBag.ChapterTitle"</span></h3>
+<h3 class="text-center text-uppercase">Thêm chương cho truyện '<span style="color:firebrick">@ViewBag.ChapterTitle</span>'</h3>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <hr />
         @Html.HiddenFor(model => model.StoryID)
 
         <div class="form-group">
@@ -30,8 +30,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm chương" class="btn btn-sm btn-success" style="margin-right:4px"/>
-                @Html.ActionLink("Trở về", "Index", "Stories", new { @class = "btn btn-sm btn-outline-success" })
+                <input type="submit" value="Thêm chương" class="btn btn-sm btn-success" style="margin-right:4px" />
+                @Html.ActionLink("Trở về", "Index", "Stories", "Admin", new { @class = "btn btn-sm btn-outline-success" })
             </div>
         </div>
     </div>

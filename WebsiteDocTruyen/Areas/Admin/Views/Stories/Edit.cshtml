@@ -5,6 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
 }
 
+<h3 class="text-center text-uppercase">Sửa truyện</h3>
 @using (Html.BeginForm("Edit", "Stories", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -47,7 +48,7 @@
 
     @Html.HiddenFor(m => m.StoryID)
 
-    <button type="submit" class="btn btn-primary" style="margin-top:4px">Save</button>
+    <button type="submit" class="btn btn-primary" style="margin-top:4px">Lưu</button>
 }
 
 

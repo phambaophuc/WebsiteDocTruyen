@@ -147,7 +147,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
 
             _dbContext.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Stories", new { id = story.StoryID });
         }
 
         public ActionResult Delete(int id)
