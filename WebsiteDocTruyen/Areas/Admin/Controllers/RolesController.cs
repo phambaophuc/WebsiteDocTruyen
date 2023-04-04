@@ -136,7 +136,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             var list = _context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
 
-            return View("ManageUserRoles");
+            return View("ManageUserRole");
         }
         
     }
