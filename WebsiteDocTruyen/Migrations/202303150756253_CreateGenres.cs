@@ -20,6 +20,9 @@
             Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (11, N'Mạt thế')");
             Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (12, N'Thám hiểm')");
             Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (13, N'Văn học Việt')");
+            Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (14, N'Dị giới')");
+            Sql("INSERT INTO GENRES (GENREID, NAME) VALUES (15, N'Trinh thám')");
+
         }
 
         public override void Down()

@@ -39,21 +39,6 @@ namespace WebsiteDocTruyen.Controllers
             return View(stories.ToList().ToPagedList(pageNum, pageSize));
         }
 
-        // Chức năng tìm truyện theo tên
-        public ActionResult SearchStory(string searchString)
-        {
-            var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                stories = stories.Where(s => s.Title.Contains(searchString));
-            }
-
-            ViewBag.Result = searchString;
-
-            return View(stories.ToList());
-        }
-
         // Phương thức đọc truyện
         public ActionResult Read(int storyId, int chapterId)
         {

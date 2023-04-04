@@ -16,6 +16,21 @@ namespace WebsiteDocTruyen.Controllers
             _dbContext = new ApplicationDbContext();
         }
 
+        // Chức năng tìm truyện theo tên
+        public ActionResult SearchStory(string searchString)
+        {
+            var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stories = stories.Where(s => s.Title.Contains(searchString));
+            }
+
+            ViewBag.Result = searchString;
+
+            return View(stories.ToList());
+        }
+
         // Hiển thị truyện có chapter mới nhất
         public ActionResult LatestChapterStories()
         {
