@@ -32,13 +32,14 @@
 
                             <div class="position-relative">
                                 <img src="@item.StoryImg" class="img-fluid rounded-start book-img" alt="@item.StoryTitle">
-                                <span onclick="return confirm('Bạn có muốn xoá lịch sử đọc của truyện @item.StoryTitle?')" class="position-absolute" style="top:0;right:4px">
+                                <span onclick="return confirm('Bạn có muốn xoá lịch sử đọc của truyện @item.StoryTitle?')" 
+                                      class="position-absolute" style="top: 0; right: 5px;">
                                     <a href="@Url.Action("DeleteHistory", "History", new { id = item.StoryID })">
                                         <i class="fa-sharp fa-solid fa-delete-left"></i>
                                     </a>
                                 </span>
                                 <span class="text-bg-success position-absolute"
-                                      style="border-radius: 4px; padding: 2px 4px; left: 0; top: 0 ">
+                                      style="border-radius: 4px; padding: 2px 4px; left: 8px; top: 6px; font-size:14px">
                                     @item.DateRead.ToRelativeDateString()
                                 </span>
                             </div>
