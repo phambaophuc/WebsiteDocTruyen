@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebsiteDocTruyen.Models;
 using System.Data.Entity;
+using PagedList;
 
 namespace WebsiteDocTruyen.Controllers
 {
@@ -17,8 +18,12 @@ namespace WebsiteDocTruyen.Controllers
         }
 
         // Chức năng tìm truyện theo tên
-        public ActionResult SearchStory(string searchString)
+        public ActionResult SearchStory(int? page, string searchString)
         {
+            if (page == null) page = 1;
+            int pageSize = 8;
+            int pageNum = page ?? 1;
+
             var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
 
             if (!String.IsNullOrEmpty(searchString))
@@ -28,11 +33,15 @@ namespace WebsiteDocTruyen.Controllers
 
             ViewBag.Result = searchString;
 
-            return View(stories.ToList());
+            return View(stories.ToList().ToPagedList(pageNum, pageSize));
         }
 
-        public ActionResult SearchStoryForGenre(int genreID = 0)
+        public ActionResult SearchStoryForGenre(int? page, int genreID = 0)
         {
+            if (page == null) page = 1;
+            int pageSize = 8;
+            int pageNum = page ?? 1;
+
             var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
 
             if (genreID != 0)
@@ -45,7 +54,7 @@ namespace WebsiteDocTruyen.Controllers
             var model = new SelectList(genres, "GenreID", "Name", genreID);
             ViewBag.GenreID = model;
 
-            return View(stories.ToList());
+            return View(stories.ToList().ToPagedList(pageNum, pageSize));
         }
 
         // Hiển thị truyện có chapter mới nhất

@@ -13,7 +13,7 @@ namespace WebsiteDocTruyen.Helper
 
             if (timeSpan.TotalSeconds < 60)
             {
-                return "vừa xong";
+                return "Vừa xong";
             }
             else if (timeSpan.TotalMinutes < 60)
             {
