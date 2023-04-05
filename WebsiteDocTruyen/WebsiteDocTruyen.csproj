@@ -414,6 +414,7 @@
     <Content Include="Views\History\ReadingHistory.cshtml" />
     <Content Include="Views\Stories\LatestChapterStories.cshtml" />
     <Content Include="Views\Stories\SearchStory.cshtml" />
+    <Content Include="Views\Stories\SearchStoryForGenre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

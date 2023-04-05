@@ -21,22 +21,17 @@ namespace WebsiteDocTruyen.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
-        public ActionResult Index(int? page, int genreID = 0)
+        public ActionResult Index(int? page)
         {
             if (page == null) page = 1;
             int pageSize = 12;
             int pageNum = page ?? 1;
 
-            var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
-
-            if (genreID != 0)
-            {
-                stories = stories.Where(s => s.Genres.Any(x => x.GenreID == genreID));
-            }
+            var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).ToList();
 
             ViewBag.GenreID = new SelectList(_dbContext.Genres, "GenreID", "Name");
 
-            return View(stories.ToList().ToPagedList(pageNum, pageSize));
+            return View(stories.ToPagedList(pageNum, pageSize));
         }
 
         // Phương thức đọc truyện

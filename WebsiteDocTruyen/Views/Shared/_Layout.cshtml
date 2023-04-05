@@ -31,7 +31,6 @@
             background-color: #E0E0DA;
         }
     </style>
-
 </head>
 <body class="font-body">
     <nav class="navbar navbar-expand-lg navbar-light" id="neubar">
@@ -49,18 +48,14 @@
             @using (Html.BeginForm("SearchStory", "Stories", new { area = "" }, FormMethod.Get, new { @class = "form-inline" }))
             {
                 <div class="input-group">
-                    <input type="search" name="searchString" class="form-control-sm" placeholder="Nhập tên truyện" 
-                           aria-label="Search" aria-describedby="search-addon" onkeyup="search()"/>
-                    <button type="submit" class="btn btn-outline-dark">Tìm kiếm</button>
+                    <input type="search" name="searchString" class="form-control-sm" placeholder="Nhập tên truyện"
+                           aria-label="Search" aria-describedby="search-addon" onkeyup="search()" />
+                    <button type="submit" class="btn btn-sm btn-outline-dark">Tìm kiếm</button>
                 </div>
             }
 
             <div class=" collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav ms-auto ">
-                    <div class="nav-item">
-                        <a class="nav-link mx-2 text-truncate" href="#"><i class="fa-sharp fa-solid fa-fire"></i> Truyện hot</a>
-                    </div>
-
                     <div class="nav-item">
                         <a class="nav-link mx-2 text-truncate" aria-current="page" href="@Url.Action("LatestChapterStories", "Stories")">
                             <i class="fa-sharp fa-solid fa-hand-sparkles"></i>

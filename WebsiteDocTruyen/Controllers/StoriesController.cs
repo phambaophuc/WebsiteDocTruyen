@@ -31,6 +31,23 @@ namespace WebsiteDocTruyen.Controllers
             return View(stories.ToList());
         }
 
+        public ActionResult SearchStoryForGenre(int genreID = 0)
+        {
+            var stories = _dbContext.Stories.Where(s => s.Chapters.Any()).Include(s => s.Genres);
+
+            if (genreID != 0)
+            {
+                stories = stories.Where(s => s.Genres.Any(x => x.GenreID == genreID));
+                ViewBag.Genre = _dbContext.Genres.FirstOrDefault(g => g.GenreID == genreID);
+            }
+
+            var genres = _dbContext.Genres.ToList();
+            var model = new SelectList(genres, "GenreID", "Name", genreID);
+            ViewBag.GenreID = model;
+
+            return View(stories.ToList());
+        }
+
         // Hiển thị truyện có chapter mới nhất
         public ActionResult LatestChapterStories()
         {
@@ -38,7 +55,6 @@ namespace WebsiteDocTruyen.Controllers
                 .Where(s => s.Chapters.Any())
                 .OrderByDescending(s => s.Chapters.Max(c => c.TimeUpdate))
                 .ToList();
-
             return View(latestChapterStories);
         }
 

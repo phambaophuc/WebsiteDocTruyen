@@ -7,13 +7,16 @@
 }
 <div class="d-inline-block d-flex align-items-center justify-content-xxl-between">
     <h5 class="d-inline-block">TRUYỆN CHỮ</h5>
-    <select onchange="if (this.value) window.location.href=this.value">
-        <option value="">Chọn thể loại</option>
-        @foreach (var genre in ViewBag.GenreID)
-        {
-            <option value="@Url.Action("Index", "Home", new { genreId = genre.Value})">@genre.Text</option>
-        }
-    </select>
+    @using (Html.BeginForm("SearchStoryForGenre", "Stories", new { area = "" }, FormMethod.Get, new { @class = "form-inline" }))
+    {
+        <select onchange="if (this.value) window.location.href=this.value">
+            <option value="">Chọn thể loại</option>
+            @foreach (var genre in ViewBag.GenreID)
+            {
+                <option value="@Url.Action("SearchStoryForGenre", "Stories", new { genreId = genre.Value})">@genre.Text</option>
+            }
+        </select>
+    }
 </div>
 <hr />
 <div class="container mb-4" id="story-list">
