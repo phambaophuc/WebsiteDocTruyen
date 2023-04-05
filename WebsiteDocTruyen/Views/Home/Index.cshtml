@@ -28,7 +28,8 @@
                     <a href="@Url.Action("Details", "Stories", new { id = story.StoryID })">
                         <img src="@story.Img" class="img-fluid book-img"/>
                     </a>
-                    <div class="position-absolute text-center" style="background-color: rgba(0, 0, 0, 0.4); bottom:0; right:0; left:0; max-width:220px">
+                    <div class="position-absolute text-center" title="@story.Title"
+                         style="background-color: rgba(0, 0, 0, 0.4); bottom:0; right:0; left:0; max-width:220px">
                         <a class="nav-link text-info fw-bold text-truncate" style="font-size:0.9rem"
                            href="@Url.Action("Details", "Stories", new { id = story.StoryID })">@story.Title</a>
                     </div>
