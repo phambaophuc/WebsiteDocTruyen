@@ -58,13 +58,17 @@ namespace WebsiteDocTruyen.Controllers
         }
 
         // Hiển thị truyện có chapter mới nhất
-        public ActionResult LatestChapterStories()
+        public ActionResult LatestChapterStories(int? page)
         {
+            if (page == null) page = 1;
+            int pageSize = 8;
+            int pageNum = page ?? 1;
+
             var latestChapterStories = _dbContext.Stories
                 .Where(s => s.Chapters.Any())
                 .OrderByDescending(s => s.Chapters.Max(c => c.TimeUpdate))
                 .ToList();
-            return View(latestChapterStories);
+            return View(latestChapterStories.ToPagedList(pageNum, pageSize));
         }
 
         // Thông tin truyện
