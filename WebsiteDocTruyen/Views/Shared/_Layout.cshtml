@@ -17,7 +17,7 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css'>
 
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
-
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <style>
         .black-background {
             background-color: rgb(35, 35, 35);
@@ -48,8 +48,7 @@
             @using (Html.BeginForm("SearchStory", "Stories", new { area = "" }, FormMethod.Get, new { @class = "form-inline" }))
             {
                 <div class="input-group">
-                    <input type="search" name="searchString" class="form-control-sm" placeholder="Nhập tên truyện"
-                           aria-label="Search" aria-describedby="search-addon" onkeyup="search()" />
+                    @Html.TextBox("searchString", null, new { @class = "form-control-sm", @id = "searchString", @autocomplete = "on", @placeholder = "Nhập tên truyện" })
                     <button type="submit" class="btn btn-sm btn-outline-dark">Tìm kiếm</button>
                 </div>
             }
@@ -113,6 +112,24 @@
 </body>
 </html>
 
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchString").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Stories/GetSuggestions",
+                    data: { term: request.term },
+                    dataType: "json",
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 1
+        });
+    });
+</script>
 @*Tạo chế độ ban đêm cho trang web*@
 <script>
     const checkbox = document.getElementById('flexSwitchCheckDefault');
@@ -133,5 +150,3 @@
         }
     });
 </script>
-
-

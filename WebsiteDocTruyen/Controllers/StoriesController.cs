@@ -35,7 +35,15 @@ namespace WebsiteDocTruyen.Controllers
 
             return View(stories.ToList().ToPagedList(pageNum, pageSize));
         }
+        public JsonResult GetSuggestions(string term)
+        {
+            var titles = _dbContext.Stories
+                .Where(s => s.Title.Contains(term))
+                .Select(s => s.Title)
+                .ToList();
 
+            return Json(titles, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult SearchStoryForGenre(int? page, int genreID = 0)
         {
             if (page == null) page = 1;

@@ -131,3 +131,40 @@ a.navbar-brand {
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     transform: perspective(900px) rotateY(-10deg);
 }
+
+/* Autocomplete */
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1000;
+    cursor: default;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    margin-top: 0;
+    margin-left: 0;
+    width: auto !important;
+}
+
+.ui-menu-item {
+    list-style-type: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+    .ui-menu-item:hover {
+        background-color: #f0f0f0;
+    }
+
+.ui-state-active,
+.ui-state-focus {
+    color: #000;
+    outline: none;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
