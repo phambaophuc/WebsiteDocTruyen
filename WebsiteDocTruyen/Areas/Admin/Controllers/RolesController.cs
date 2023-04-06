@@ -20,10 +20,12 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             _context = new ApplicationDbContext();
         }
         // GET: Admin/Role
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -42,11 +44,13 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                 return View();
             }
         }
+
         public ActionResult Index()
         {
             var roles = _context.Roles.ToList(); 
             return View(roles);
         }
+
         public ActionResult Delete(string roleName)
         {
             var thisRole = _context.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
@@ -54,11 +58,14 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [Authorize]
         public ActionResult Edit(string roleName) 
         {
             var thisRole = _context.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             return View(thisRole); 
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Microsoft.AspNet.Identity.EntityFramework.IdentityRole role)
@@ -75,6 +82,8 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        [Authorize]
         public ActionResult ManageUserRole()
         {
             var list = _context.Roles.OrderBy(r => r.Name).ToList()
@@ -82,6 +91,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             ViewBag.Roles = list;
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RoleAddToUser(string UserName, string RoleName)
@@ -92,12 +102,12 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
 
             ViewBag.ResultMessage = "Role created successfully !";
 
-            // prepopulat roles for the view dropdown
             var list = _context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
 
             return View("ManageUserRole");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult GetRoles(string UserName)
@@ -109,13 +119,13 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
 
                 ViewBag.RolesForThisUser = account.UserManager.GetRoles(user.Id);
 
-                // prepopulat roles for the view dropdown
                 var list = _context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.Roles = list;
             }
 
             return View("ManageUserRole");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
@@ -132,7 +142,7 @@ namespace WebsiteDocTruyen.Areas.Admin.Controllers
             {
                 ViewBag.ResultMessage = "This user doesn't belong to selected role.";
             }
-            // prepopulat roles for the view dropdown
+            
             var list = _context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
 

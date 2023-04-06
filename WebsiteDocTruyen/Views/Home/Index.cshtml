@@ -9,13 +9,7 @@
     <h5 class="d-inline-block">TRUYỆN CHỮ</h5>
     @using (Html.BeginForm("SearchStoryForGenre", "Stories", new { area = "" }, FormMethod.Get, new { @class = "form-inline" }))
     {
-        <select onchange="if (this.value) window.location.href=this.value">
-            <option value="">Chọn thể loại</option>
-            @foreach (var genre in ViewBag.GenreID)
-            {
-                <option value="@Url.Action("SearchStoryForGenre", "Stories", new { genreId = genre.Value})">@genre.Text</option>
-            }
-        </select>
+        @Html.DropDownList("genreId", (IEnumerable<SelectListItem>)ViewBag.GenreID, "Chọn thể loại", new { onchange = "this.form.submit();" })
     }
 </div>
 <hr />

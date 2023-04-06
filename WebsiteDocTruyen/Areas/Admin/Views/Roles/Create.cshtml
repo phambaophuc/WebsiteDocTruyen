@@ -4,20 +4,29 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
 }
 
-<h2>Create Role</h2>
-@Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRole")
-<hr />
-@using (Html.BeginForm())
+@if(User.IsInRole("Admin"))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
     <div>
-        Role name
+        <h2>Create Role</h2>
+        @Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRole")
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div>
+                Role name
+            </div>
+            <p>
+                @Html.TextBox("RoleName")
+            </p>
+            <input type="submit" value="Save" />
+        }
     </div>
-    <p>
-        @Html.TextBox("RoleName")
-    </p>
-    <input type="submit" value="Save" />
+}
+else
+{
+    <h2 class="text-danger text-center">Bạn không có quyền sử dụng chức năng này</h2>
 }
 

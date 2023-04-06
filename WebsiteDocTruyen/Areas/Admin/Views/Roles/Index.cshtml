@@ -10,20 +10,22 @@
 }
 else
 {
-    <h2>Roles Listing </h2>
-    @Html.ActionLink("Create New Role", "Create") <span class="mx-2">|</span> @Html.ActionLink("Manage User Role", "ManageUserRole");
-    <hr />
     <div>
-        @foreach (var role in Model)
-        {
-            <p>
-                <strong>@role.Name | </strong>
-                <span onclick="return confirm('Are you sure to delete?')">
-                    <a href="@Url.Action("Delete", "Roles", new { roleName = role.Name })" class="delLink" style="color:red;">Delete</a>
-                </span> |
-                @Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })
-            </p>
-        }
+        <h2>Roles Listing </h2>
+        @Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRole")
+        <hr />
+        <div>
+            @foreach (var role in Model)
+            {
+                <p>
+                    <strong>@role.Name | </strong>
+                    <span onclick="return confirm('Are you sure to delete?')">
+                        <a href="@Url.Action("Delete", "Roles", new { roleName = role.Name })" class="delLink" style="color:red;">Delete</a>
+                    </span> |
+                    @Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })
+                </p>
+            }
+        </div>
     </div>
 }
 
