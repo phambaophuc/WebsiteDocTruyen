@@ -63,7 +63,7 @@ namespace WebsiteDocTruyen.Controllers
             }
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            /*var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
             switch (result)
             {
@@ -77,6 +77,26 @@ namespace WebsiteDocTruyen.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
+            }*/
+
+            var user = await UserManager.FindAsync(model.Email, model.Password);
+            if (user != null)
+            {
+                await SignInAsync(user, model.RememberMe);
+
+                if (UserManager.IsInRole(user.Id, "Admin"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                }
+                else
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password.");
+                return View(model);
             }
         }
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
