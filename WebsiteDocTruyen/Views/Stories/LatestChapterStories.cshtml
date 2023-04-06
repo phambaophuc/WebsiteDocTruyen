@@ -21,7 +21,7 @@
             <div class="d-flex mb-4 title-underline">
                 <img class="book-img" src="@story.Img" alt="@story.Title" style="width:140px;" />
                 <div class="d-flex flex-column justify-content-center mx-4">
-                    <a class="nav-link link-dark fw-bold"
+                    <a class="nav-link link-success fw-bold"
                        href="@Url.Action("Details", "Stories", new { id = story.StoryID })"><i class="fa-solid fa-book-open-reader"></i> @story.Title</a>
                     <p><i class="fa-solid fa-pen"></i> <span>Tác giả:</span> @story.Author</p>
                     @if (story.Chapters.Any())

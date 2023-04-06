@@ -137,7 +137,7 @@ a.navbar-brand {
     position: absolute;
     z-index: 1000;
     cursor: default;
-    background-color: #ffffff;
+    background-color: #fae8d2;
     border: 1px solid #ccc;
     font-size: 14px;
     max-height: 200px;
@@ -147,6 +147,7 @@ a.navbar-brand {
     margin-top: 0;
     margin-left: 0;
     width: auto !important;
+    color: #0a58ca;
 }
 
 .ui-menu-item {
@@ -154,10 +155,6 @@ a.navbar-brand {
     padding: 5px 10px;
     cursor: pointer;
 }
-
-    .ui-menu-item:hover {
-        background-color: #f0f0f0;
-    }
 
 .ui-state-active,
 .ui-state-focus {
